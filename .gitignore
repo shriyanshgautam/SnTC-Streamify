@@ -1,0 +1,12 @@
+/node_modules
+/vendor
+/.idea
+public/storage
+public/hot
+storage/*.key
+.env.*.php
+.env.php
+.env
+Homestead.yaml
+Homestead.json
+.DS_Store
