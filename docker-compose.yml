@@ -22,7 +22,7 @@ services:
     volumes_from:
       - app
     ports:
-      - 80:80
+      - 8080:80
 
   # The Database
   database:

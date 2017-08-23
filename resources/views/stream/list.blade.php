@@ -1,39 +1,38 @@
-@extends('app_user.main')
+@extends('stream.main')
 
 @section('main-content')
 
-@if (count($app_users)>0)
+@if (count($streams)>0)
 <table class="table table-hover">
   <thead>
     <tr>
       <th>#</th>
-      <th>Name</th>
-      <th>Unique Id</th>
-      <th>Email</th>
-      <th>Contact</th>
-      <th>Branch</th>
+      <th>Title</th>
+      <th>Subtitle</th>
+      <th>Description</th>
+      <th>Image</th>
+      <th>Author</th>
     </tr>
   </thead>
   <tbody>
-      @foreach ($app_users as $app_user)
+      @foreach ($streams as $stream)
           <tr>
-            <th scope="row">{{$app_user->id}}</th>
-            <td>{{$app_user->name}}</td>
-            <td>{{$app_user->email}}</td>
-            <td>{{$app_user->contact}}</td>
-            <td>{{$app_user->year}}</td>
-            <td>{{$app_user->branch}}</td>
+            <th scope="row">{{$stream->id}}</th>
+            <td>{{$stream->title}}</td>
+            <td>{{$stream->subtitle}}</td>
+            <td>{{$stream->description}}</td>
+            <td>{{$stream->image}}</td>
+            <!-- Accessing foriegn key table values -->
+            <td>{{$stream->author->name}}</td>
             <td>
-                <!-- <form action="app_users/{{$app_user->id}}/edit/" method="get">
+                <!-- <form action="streams/{{$stream->id}}/edit/" method="get">
                     <button type="submit" class="btn btn-primary">
                         <i class="material-icons md-18" style="font-size:16px;">mode_edit</i>
                     </button>
                 </form> -->
-                <form method="post" action="/app_users/{{$app_user->id}}">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="btn btn-danger">
-                        {{ csrf_field() }}
-                        <i class="material-icons md-18" style="font-size:16px;">delete</i>
+                <form method="get" action="/streams/{{$stream->id}}">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="material-icons md-18" style="font-size:16px;">search</i>
                     </button>
                 </form>
             </td>
@@ -43,7 +42,7 @@
 </table>
 @else
     <div class="alert alert-warning">
-        No App Users available!
+        No Streams available!
     </div>
 @endif
 

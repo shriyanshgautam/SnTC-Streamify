@@ -19,7 +19,7 @@ class CreateEventsTable extends Migration
             $table->string('subtitle');
             $table->text('description');
             $table->text('image');
-            $table->integer('time');
+            $table->dateTime('time');
             $table->integer('author_id')->unsigned();
             $table->integer('location_id')->unsigned();
             $table->integer('stream_id')->unsigned();

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class AppPost extends Model
 {
     //
-    public function appUserId()
+    public function appUser()
     {
         return $this->belongsTo('App\AppUser');
     }

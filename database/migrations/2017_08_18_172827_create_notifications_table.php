@@ -21,7 +21,7 @@ class CreateNotificationsTable extends Migration
             $table->text('link');
             $table->text('image');
             $table->integer('type');
-            $table->integer('time');
+            $table->dateTime('time');
             $table->integer('author_id')->unsigned();
             $table->integer('stream_id')->unsigned();
             $table->integer('tag_id')->unsigned();

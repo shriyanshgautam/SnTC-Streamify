@@ -16,10 +16,10 @@ class Stream extends Model
     // plural used for many to many relationship
     public function positionHolders()
     {
-        return $this->belongsToMany('App\PositionHolder')->withPivot('level');;
+        return $this->belongsToMany('App\PositionHolder');
     }
 
-    public function Body()
+    public function bodies()
     {
         return $this->belongsToMany('App\Body');
     }
@@ -43,8 +43,4 @@ class Stream extends Model
     {
         return $this->hasMany('App\Feedback');
     }
-
-
-
-
 }

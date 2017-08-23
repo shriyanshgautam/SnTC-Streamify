@@ -104,6 +104,8 @@ class AuthorController extends Controller
 
         $author = Author::find($id);
         $streams=$author->streams()->get();
+        $streams=$author->events()->get();
+        $streams=$author->notifications()->get();
         if($streams->count()>0){
             // cannot delete
             return redirect('authors')->with(['status'=>'danger','status_string'=>'Cannot Delete '.$author->name.' ! Has some dependecy.']);

@@ -11,4 +11,14 @@ class Author extends Model
     {
         return $this->hasMany('App\Stream');
     }
+
+    public function events()
+    {
+        return $this->hasMany('App\Event');
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany('App\Notification');
+    }
 }

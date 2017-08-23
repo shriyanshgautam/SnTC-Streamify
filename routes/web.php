@@ -30,12 +30,27 @@ Route::resource('colleges', 'CollegeController');
 
 Route::resource('app_users', 'AppUserController');
 
+Route::resource('streams', 'StreamController');
+
+Route::resource('events', 'EventController');
+
+Route::resource('notifications', 'NotificationController');
+
+Route::resource('feedbacks', 'FeedbackController');
+
+Route::resource('app_posts', 'AppPostController');
+
+Route::post('subscribe','SubscribeController@subscribe');
+
+
+
+
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
-Route::get('/streams',function(){
+Route::get('/some',function(){
     // DB::table('position_holders')->insert(
     //     ['name' => 'Gopal',
     //      'position' => 'Gen Secy',
@@ -61,13 +76,14 @@ Route::get('/streams',function(){
     //     ['position_holder_id' => 2, 'stream_id' => 1,'level'=>2]
     // );
 
-    $record = App\Stream::find(1);
-    $author = $record->author()->get();
-    $names=$record->positionHolders()->get();
+    // $record = App\Stream::find(1);
+    // $author = $record->author()->get();
+    // $names=$record->positionHolders()->get();
     // $actual='n';
     // foreach($names as $name){
     //     $actual = 'f';
     // }
 
-    return response($record->get().'- '.$names.'- '.$author);
+    //return response($record->get().'- '.$names.'- '.$author);
+    return response('hi');
 });

@@ -26,4 +26,9 @@ class Event extends Model
     {
         return $this->belongsTo('App\Stream');
     }
+
+    public function appUsers()
+    {
+        return $this->belongsToMany('App\AppUser');
+    }
 }

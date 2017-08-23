@@ -39,6 +39,7 @@ class PositionHolderController extends Controller
         $position_holder = new PositionHolder;
         $position_holder->name = $request->name;
         $position_holder->position = $request->position;
+        $position_holder->level = $request->level;
         $position_holder->email = $request->email;
         $position_holder->contact = $request->contact;
         //TODO file handler
@@ -85,6 +86,7 @@ class PositionHolderController extends Controller
         $position_holder = PositionHolder::find($id);
         $position_holder->name = $request->name;
         $position_holder->position = $request->position;
+        $position_holder->level = $request->level;
         $position_holder->email = $request->email;
         $position_holder->contact = $request->contact;
         //TODO file handler

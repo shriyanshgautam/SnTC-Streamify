@@ -31,6 +31,6 @@ class CreateBodiesStreamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bodies_streams');
+        Schema::dropIfExists('body_stream');
     }
 }

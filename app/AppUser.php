@@ -16,6 +16,12 @@ class AppUser extends Model
     }
 
     // plural used for many to many relationship
+    public function events()
+    {
+        return $this->belongsToMany('App\Event');
+    }
+
+    // plural used for many to many relationship
     public function notifications()
     {
         return $this->belongsToMany('App\Notification');

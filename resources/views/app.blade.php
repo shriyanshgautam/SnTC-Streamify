@@ -16,14 +16,18 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-              </li>
+
               <li class="nav-item active">
                 <a class="nav-link" href="/app_users">Users</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
+              <li class="nav-item active">
+                <a class="nav-link" href="/streams">Streams</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/notifications">Notifications</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/events">Events</a>
               </li>
               <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -37,6 +41,9 @@
                   <a class="dropdown-item" href="/tags">Tags</a>
                   <a class="dropdown-item" href="/colleges">Colleges</a>
                 </div>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/feedbacks">Feedbacks</a>
               </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">

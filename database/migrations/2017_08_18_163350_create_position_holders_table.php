@@ -17,6 +17,7 @@ class CreatePositionHoldersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('position');
+            $table->integer('level');
             $table->string('email');
             $table->string('contact');
             $table->text('image');

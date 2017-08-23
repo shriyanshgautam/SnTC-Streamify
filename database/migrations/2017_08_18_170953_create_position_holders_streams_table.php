@@ -18,7 +18,6 @@ class CreatePositionHoldersStreamsTable extends Migration
             $table->increments('id');
             $table->integer('position_holder_id')->unsigned();
             $table->integer('stream_id')->unsigned();
-            $table->integer('level');
             $table->timestamps();
 
             $table->foreign('position_holder_id')->references('id')->on('position_holders');
@@ -33,6 +32,6 @@ class CreatePositionHoldersStreamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('position_holders_streams');
+        Schema::dropIfExists('position_holder_stream');
     }
 }

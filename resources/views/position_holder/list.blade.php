@@ -9,6 +9,7 @@
       <th>#</th>
       <th>Name</th>
       <th>Position</th>
+      <th>Level</th>
       <th>Email</th>
       <th>Contact</th>
       <th>Image</th>
@@ -20,6 +21,7 @@
             <th scope="row">{{$position_holder->id}}</th>
             <td>{{$position_holder->name}}</td>
             <td>{{$position_holder->position}}</td>
+            <td>{{$position_holder->level}}</td>
             <td>{{$position_holder->email}}</td>
             <td>{{$position_holder->contact}}</td>
             <td>{{$position_holder->image}}</td>

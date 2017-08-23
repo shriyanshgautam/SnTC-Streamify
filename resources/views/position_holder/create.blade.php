@@ -23,6 +23,12 @@
     </div>
 
     <div class="form-group">
+        <label for="exampleInputEmail1">Level</label>
+        <input type="number" name="level" value="{{$position_holder->level or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter level">
+        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+    </div>
+
+    <div class="form-group">
         <label for="exampleInputEmail1">Email</label>
         <input type="email" name="email" value="{{$position_holder->email or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
