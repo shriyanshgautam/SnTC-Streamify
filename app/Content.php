@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Content extends Model
 {
-    public function notification()
+    public function notifications()
     {
-        return $this->belongsTo('App\Notification');
+        return $this->belongsToMany('App\Notification');
     }
 }

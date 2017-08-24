@@ -44,6 +44,12 @@
     <div class="col-6 p-1">
         <b>Notification Likes: </b>{{$notification->appUsers->count()}}
     </div>
+    <div class="col-6 p-1">
+        <b>Notification Contents: </b>{{$notification->contents->count()}}
+        <br /> @foreach($notification->contents as $content)
+                {{$content->title}}<br />({{$content->url}})<br />
+             @endforeach
+    </div>
 
 </div>
 <div class="row p-3" >

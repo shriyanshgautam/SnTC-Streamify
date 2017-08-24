@@ -111,6 +111,19 @@
            </select>
         </div>
 
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Select Content</label>
+            <select name="content_ids[]" class="form-control" multiple id="exampleFormControlSelect1">
+                @foreach ($contents as $content)
+                     @if(isset($notification))
+                         <option value="{{$content->id}}" @if($content->id == $notification->contents->id) selected @endif >{{$content->name}}</option>
+                     @else
+                         <option value="{{$content->id}}" >{{$content->title}}</option>
+                     @endif
+                @endforeach
+            </select>
+         </div>
+
     <div class="row">
         <div class="col-10">
 

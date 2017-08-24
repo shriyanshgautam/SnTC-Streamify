@@ -43,7 +43,13 @@
                 </div>
               </li>
               <li class="nav-item active">
+                <a class="nav-link" href="/contents">Contents</a>
+              </li>
+              <li class="nav-item active">
                 <a class="nav-link" href="/feedbacks">Feedbacks</a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/app_posts">Posts</a>
               </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">

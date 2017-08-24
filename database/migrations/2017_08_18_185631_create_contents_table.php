@@ -19,10 +19,7 @@ class CreateContentsTable extends Migration
             $table->text('text');
             $table->integer('type');
             $table->text('url');
-            $table->integer('notification_id')->unsigned();
             $table->timestamps();
-
-            $table->foreign('notification_id')->references('id')->on('notifications');
         });
     }
 

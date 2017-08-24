@@ -18,7 +18,7 @@ class CreateAppPostsTable extends Migration
             $table->string('title');
             $table->text('content');
             $table->string('type');
-            $table->integer('time');
+            $table->dateTime('time');
             $table->integer('app_user_id')->unsigned();
             $table->timestamps();
 

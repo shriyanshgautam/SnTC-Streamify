@@ -17,6 +17,12 @@ class Notification extends Model
         return $this->belongsToMany('App\AppUser');
     }
 
+    // plural used for many to many relationship
+    public function contents()
+    {
+        return $this->belongsToMany('App\Content');
+    }
+
     public function tag()
     {
         return $this->belongsTo('App\Tag');
@@ -26,11 +32,5 @@ class Notification extends Model
     {
         return $this->belongsTo('App\Stream');
     }
-
-    public function contents()
-    {
-        return $this->hasMany('App\Content');
-    }
-
 
 }

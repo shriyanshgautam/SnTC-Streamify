@@ -7,6 +7,7 @@ use App\Notification;
 use App\Author;
 use App\Stream;
 use App\Tag;
+use App\Content;
 use Carbon\Carbon;
 
 class NotificationController extends Controller
@@ -32,7 +33,8 @@ class NotificationController extends Controller
         $authors = Author::all();
         $streams = Stream::all();
         $tags = Tag::all();
-        return view('notification.create',['authors'=>$authors,'streams'=>$streams,'tags'=>$tags]);
+        $contents = Content::all();
+        return view('notification.create',['authors'=>$authors,'streams'=>$streams,'tags'=>$tags,'contents'=>$contents]);
 
     }
 
@@ -61,6 +63,11 @@ class NotificationController extends Controller
         $notification->stream_id=$request->stream_id;
         $notification->tag_id=$request->tag_id;
         $notification->save();
+
+        if(isset($request->content_ids)){
+            $notification->contents()->sync($request->content_ids);
+        }
+
 
 
 
