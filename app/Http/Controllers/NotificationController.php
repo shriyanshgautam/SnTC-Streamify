@@ -8,7 +8,9 @@ use App\Author;
 use App\Stream;
 use App\Tag;
 use App\Content;
+
 use Carbon\Carbon;
+use App\Repositories\FirebaseCloudMessaging;
 
 class NotificationController extends Controller
 {
@@ -19,7 +21,7 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        $notifications = Notification::all();
+        $notifications = Notification::paginate(6);;
         return view('notification.list',['notifications'=>$notifications]);
     }
 
@@ -36,6 +38,17 @@ class NotificationController extends Controller
         $contents = Content::all();
         return view('notification.create',['authors'=>$authors,'streams'=>$streams,'tags'=>$tags,'contents'=>$contents]);
 
+    }
+
+    /**
+     * sendFcmNotification - description
+     *
+     * @param  {type} $data description
+     * @return {type}       description
+     */
+    public function sendFcmNotification($data){
+        $firebaseCloudMessaging = new FirebaseCloudMessaging();
+        return $firebaseCloudMessaging->sendNotification($data,"DEBUG");
     }
 
     /**
@@ -67,6 +80,66 @@ class NotificationController extends Controller
         if(isset($request->content_ids)){
             $notification->contents()->sync($request->content_ids);
         }
+
+        $this->sendFcmNotification($notification);
+
+
+
+
+        /******************
+         * Request Format
+         ********************/
+        // https://fcm.googleapis.com/fcm/send
+        // Content-Type:application/json
+        // Authorization:key=AAAA3kKi_TA:APA91bGkb_OjJjdVD317ENl2qUlqs_vcCK69b-2nJVTuzLDZBAVwzaSKXAqKca7zLiT_f6aLKPRg57pLZhaW1OLpmr5z3WyPdqR4yVkB-JADAd4cKUZp3WaTtnlWKGNIDhl3GCE_fWA6
+        //
+        // { "data": {
+        //     "score": "5x1",
+        //     "time": "15:10"
+        //   },
+        //   "to" : "bk3RNwTe3H0:CI2k_HHwgIpoDKCIZvvDMExUdFQ3P1..." //for only single
+        //   "registration_ids" :["id1","id2",.....] //for single and multiple
+        // }
+         /******************
+         * Response Format
+         ********************/
+        //  { "multicast_id": 108,
+        //       "success": 1,
+        //       "failure": 0,
+        //       "canonical_ids": 0,
+        //       "results": [
+        //         { "message_id": "1:08" }
+        //       ]
+        //     }
+        // Dropbox Access Token V7NUPdUxgsAAAAAAAAAAByKFsZ-C7xzRduweUVJVtv8sqvQhjbOj7nvlMBh--kxp
+        //
+        // Dropbox Upload API
+        //
+        // URL  :https://content.dropboxapi.com/2/files/upload
+        // HEADER
+        // Authorization: Bearer V7NUPdUxgsAAAAAAAAAAEOmijsBhn3vEs2rFFtzDUeLjq8TOGrMMxZXdfqrNpSfJ
+        // Dropbox-API-Arg: {\"path\": \"/Homework/math/Matrices.txt\",\"mode\": \"add\",\"autorename\": true,\"mute\": false}
+        //
+        // DATA
+        //
+        // binay file
+        //
+        // Dropbox Share Link API
+        //
+        // URl : https://api.dropboxapi.com/2/sharing/create_shared_link
+        //
+        // HEADER
+        // Authorization: Bearer V7NUPdUxgsAAAAAAAAAAEOmijsBhn3vEs2rFFtzDUeLjq8TOGrMMxZXdfqrNpSfJ
+        // Content-Type: application/json
+        //
+        // DATA
+        //   {
+        //        "path": "/Homework/Math/Prime_Numbers.txt",
+        //        "short_url": false
+        //    }
+        //
+        //
+        // Dropbox replace www.dropbox.com with dl.dropboxusercontent.com to get the usable url for image
 
 
 
