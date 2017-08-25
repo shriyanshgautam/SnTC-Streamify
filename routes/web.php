@@ -42,6 +42,8 @@ Route::resource('app_posts', 'AppPostController');
 
 Route::resource('contents', 'ContentController');
 
+Route::post('register','RegistrationController@register');
+
 Route::post('subscribe','SubscribeController@subscribe');
 
 
