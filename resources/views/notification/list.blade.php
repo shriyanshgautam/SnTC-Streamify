@@ -38,6 +38,38 @@
       @endforeach
   </tbody>
 </table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+
+
+    @if($notifications->currentPage()!=1)
+        <li class="page-item">
+          <a class="page-link" href="{{$notifications->previousPageUrl()}}" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="{{$notifications->previousPageUrl()}}">{{$notifications->currentPage()-1}}</a></li>
+    @else
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+
+    @endif
+    <li class="page-item active">
+      <a class="page-link" href="#">{{$notifications->currentPage()}}<span class="sr-only">(cuurent)</span></a>
+    </li>
+
+    @if($notifications->hasMorePages())
+        <li class="page-item"><a class="page-link" href="{{$notifications->nextPageUrl()}}">{{$notifications->currentPage()+1}}</a></li>
+        <li class="page-item">
+          <a class="page-link" href="{{$notifications->nextPageUrl()}}">Next</a>
+        </li>
+    @else
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Next</a>
+        </li>
+    @endif
+  </ul>
+</nav>
 @else
     <div class="alert alert-warning">
         No Notifications available!
