@@ -3,9 +3,9 @@
 @section('main-content')
 
 @if (!isset($author))
-    <form method="post" action="/authors">
+    <form method="post" action="/authors" enctype="multipart/form-data">
 @else
-    <form method="post" action="/authors/{{$author->id}}">
+    <form method="post" action="/authors/{{$author->id}}" enctype="multipart/form-data">
         <input type="hidden" name="_method" value="PUT">
 @endif
 
