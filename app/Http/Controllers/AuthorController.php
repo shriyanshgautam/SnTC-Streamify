@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Author;
 use App\Stream;
+use App\Repositories\Dropbox;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
 
 class AuthorController extends Controller
 {
@@ -43,8 +46,15 @@ class AuthorController extends Controller
         $author->name = $request->name;
         $author->email = $request->email;
         $author->contact = $request->contact;
-        // TODO file handling
-        $author->image = '123.jpg';
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $url = $this->getDropboxLink($image,"author".$request->email.$request->contact.".jpg","/Authors/");
+            $author->image = $url;
+        }else{
+            $author->image = "";
+        }
+
         $author->save();
 
         return redirect('authors')->with(['status'=>'success','status_string'=>'Added '.$author->name.'!']);;
@@ -86,11 +96,22 @@ class AuthorController extends Controller
         $author->name = $request->name;
         $author->email = $request->email;
         $author->contact = $request->contact;
-        // TODO file handling
-        $author->image = '123.jpg';
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $url = $this->getDropboxLink($image,"author".$request->email.$request->contact.".jpg","/Authors/");
+            $author->image = $url;
+        }else{
+            $author->image = "";
+        }
         $author->save();
 
         return redirect('authors')->with(['status'=>'success','status_string'=>'Updated '.$author->name.' !']);;
+    }
+
+    public function getDropboxLink($file,$fileName,$directory){
+        $dropbox = new Dropbox();
+        return $dropbox->uploadAndObtainSharableLink($file,$fileName,$directory);
     }
 
     /**
