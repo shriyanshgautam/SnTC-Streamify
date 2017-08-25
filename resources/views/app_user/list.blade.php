@@ -8,9 +8,9 @@
     <tr>
       <th>#</th>
       <th>Name</th>
-      <th>Unique Id</th>
       <th>Email</th>
       <th>Contact</th>
+      <th>Year</th>
       <th>Branch</th>
     </tr>
   </thead>
