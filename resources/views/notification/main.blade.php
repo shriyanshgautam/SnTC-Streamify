@@ -19,7 +19,7 @@
                 <li class="list-group-item"><a href="\notifications\create">Create New Notifications</a></li>
               </ul>
         </div>
-        <div class="col-8 p-3">
+        <div class="col-8 p-3" style="overflow-y:scroll;flex:1">
             @yield('main-content')
 
         </div>
