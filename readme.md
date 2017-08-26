@@ -21,7 +21,8 @@ We have used Dropbox API v2 is a set of HTTP endpoints for this app
 
 ```
 URL : https://content.dropboxapi.com/2/files/upload
-HEADERS  : "Authorization: Bearer <get access token>" \
+REQUEST TYPE : HTTP Post
+HEADERS  : "Authorization: Bearer <access token>"
            "Dropbox-API-Arg: {"path": "/Homework/math/Matrices.txt","mode": "add","autorename": true,"mute": false}"
            "Content-Type: application/octet-stream"
            
@@ -45,9 +46,58 @@ HEADERS  : "Authorization: Bearer <get access token>" \
 BODY : file as binary data
 
 ```
+
+**[/create_shared_link](https://www.dropbox.com/developers/documentation/http/documentation#sharing-create_shared_link)** - for getting a sharable link to the file
+
+```
+URL : https://api.dropboxapi.com/2/sharing/create_shared_link
+REQUEST TYPE : HTTP Post
+HEADERS : "Authorization: Bearer <access token>" 
+          "Content-Type: application/json"
+BODY : {
+           "path": "/Homework/Math/Prime_Numbers.txt",
+           "short_url": false
+       }
+       
+       Options
+       path: String The path to share.
+       
+       short_url: Boolean Whether to return a shortened URL. The default for this field is False.
+
+       pending_upload: PendingUploadMode? If it's okay to share a path that does not yet exist, set this to either 
+       PendingUploadMode.file or PendingUploadMode.folder to indicate whether to assume it's a file or folder. This field is 
+       optional.
+```
+
 ### Firebase Cloud Messaging API
+
+**[Server setup Doc](https://firebase.google.com/docs/cloud-messaging/server)**
+
+```
+URL : https://fcm.googleapis.com/fcm/send
+HEADER : "Content-Type : application/json"
+         "Authorization : key=AIzaSyZ-1u...0GBYzPu7Udno5aA
+BODY : { "data": {
+             "score": "5x1",
+             "time": "15:10"
+           },
+           "to" : "bk3RNwTe3H0:CI2k_HHwgIpoDKCIZvvDMExUdFQ3P1..."
+           "registration_ids" :["id1","id2",.....]
+       }
+       
+       Options
+       data : JSON data to be sent to user device
+       to : Firebase Token of the user (for sending notification to single user only)
+       registration_ids : array to Firebase Tokens (for sending notification to multiple users)
+
+```
+
 ### Google Maps API (Static)
 
+**[Statis Map Doc](https://developers.google.com/maps/documentation/static-maps/intro)**
+```
+URL : https://maps.googleapis.com/maps/api/staticmap?parameters
+```
 
 ## Official Documentation
 
