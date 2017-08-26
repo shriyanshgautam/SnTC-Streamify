@@ -31,6 +31,8 @@ class Secrets{
         $this->dropboxUploadUrl = "https://content.dropboxapi.com/2/files/upload";
         $this->dropboxSharedLinkUrl = "https://api.dropboxapi.com/2/sharing/create_shared_link";
         $this->dropboxAuthHeader = env('DROPBOX_AUTH_KEY',"");
+
+        $this->googleMapsApiKey= env('GOOGLE_MAPS_API_KEY',"");
     }
 
     /**
@@ -85,5 +87,14 @@ class Secrets{
      */
     public function getDropboxAuthHeader(){
         return $this->dropboxAuthHeader;
+    }
+
+    /**
+     * getGoogleMapsApiKey - description    
+     *
+     * @return {type}  description
+     */
+    public function getGoogleMapsApiKey(){
+        return $this->googleMapsApiKey;
     }
 }

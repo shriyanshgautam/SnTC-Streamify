@@ -23,7 +23,7 @@
             <td>{{$author->name}}</td>
             <td>{{$author->email}}</td>
             <td>{{$author->contact}}</td>
-            <td>{{$author->image}}</td>
+            <td><img width="64px" height="64px" src="{{str_replace("www.dropbox.com","dl.dropboxusercontent.com",$author->image)}}" /></td>
             <td>
                 <form action="authors/{{$author->id}}/edit/" method="get">
                     <button type="submit" class="btn btn-primary">

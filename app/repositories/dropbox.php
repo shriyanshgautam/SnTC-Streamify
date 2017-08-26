@@ -60,7 +60,7 @@ class Dropbox{
      */
     public function getSharableLink($filePath){
         $this->sharableLinkHeaders["Content-Type"] = "application/json";
-        $body = ["path"=>$filePath,"short_url"=>$this->TRUE];
+        $body = ["path"=>$filePath,"short_url"=>$this->FALSE];
         $body = json_encode($body);
         $request = new Request('POST', $this->secrets->getDropboxSharedLinkUrl(), $this->sharableLinkHeaders, $body);
         $response = $this->client->send($request);
