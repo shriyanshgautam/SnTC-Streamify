@@ -42,6 +42,39 @@
       @endforeach
   </tbody>
 </table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+
+
+    @if($authors->currentPage()!=1)
+        <li class="page-item">
+          <a class="page-link" href="{{$authors->previousPageUrl()}}" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="{{$authors->previousPageUrl()}}">{{$authors->currentPage()-1}}</a></li>
+    @else
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+
+    @endif
+    <li class="page-item active">
+      <a class="page-link" href="#">{{$authors->currentPage()}}<span class="sr-only">(cuurent)</span></a>
+    </li>
+
+    @if($authors->hasMorePages())
+        <li class="page-item"><a class="page-link" href="{{$authors->nextPageUrl()}}">{{$authors->currentPage()+1}}</a></li>
+        <li class="page-item">
+          <a class="page-link" href="{{$authors->nextPageUrl()}}">Next</a>
+        </li>
+    @else
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Next</a>
+        </li>
+    @endif
+  </ul>
+</nav>
+
 @else
     <div class="alert alert-warning">
         No Authors available!
