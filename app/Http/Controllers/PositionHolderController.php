@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\PositionHolder;
+use Carbon\Carbon;
 use App\Repositories\Dropbox;
 use Illuminate\Support\Facades\File;
 
@@ -47,7 +48,7 @@ class PositionHolderController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $url = $this->getDropboxLink($image,"position_holder".$request->email.$request->contact.".jpg","/PositionHolders/");
+            $url = $this->getDropboxLink($image,"position_holder".$request->email.Carbon::now()->timestamp.".jpg","/PositionHolders/");
             $position_holder->image = $url;
         }else{
             $position_holder->image = "";
@@ -100,7 +101,7 @@ class PositionHolderController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $url = $this->getDropboxLink($image,"position_holder".$request->email.$request->contact.".jpg","/PositionHolders/");
+            $url = $this->getDropboxLink($image,"position_holder".$request->email.Carbon::now()->timestamp.".jpg","/PositionHolders/");
             $position_holder->image = $url;
         }else{
             $position_holder->image = "";

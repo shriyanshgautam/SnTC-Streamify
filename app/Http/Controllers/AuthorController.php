@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Author;
 use App\Stream;
+use Carbon\Carbon;
 use App\Repositories\Dropbox;
 use Illuminate\Support\Facades\File;
 
@@ -48,7 +49,7 @@ class AuthorController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $url = $this->getDropboxLink($image,"author".$request->email.$request->contact.".jpg","/Authors/");
+            $url = $this->getDropboxLink($image,"author".$request->email.Carbon::now()->timestamp.".jpg","/Authors/");
             $author->image = $url;
         }else{
             $author->image = "";
@@ -98,7 +99,7 @@ class AuthorController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $url = $this->getDropboxLink($image,"author".$request->email.$request->contact.".jpg","/Authors/");
+            $url = $this->getDropboxLink($image,"author".$request->email.Carbon::now()->timestamp.".jpg","/Authors/");
             $author->image = $url;
         }else{
             $author->image = "";
