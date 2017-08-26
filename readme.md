@@ -20,7 +20,7 @@ docker run --rm -v $(pwd):/app composer/composer require <package_name:version>
 
 Install dependency added to composer.json
 ```
-docker run --rm -v $(pwd):/app composer/composer require
+docker run --rm -v $(pwd):/app composer/composer update
 ```
 
 Execute artisan commands in app
@@ -29,7 +29,7 @@ docker-compose exec app php artisan <command>
 ```
 
 ### MySql
-### Naginx
+### Nginx
 
 ## APIs Used
 ### Dropbox API
