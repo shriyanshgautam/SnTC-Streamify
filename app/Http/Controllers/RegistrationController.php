@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\Dropbox;
 use App\Repositories\FirebaseCloudMessaing;
-use App\appUser;
+use App\AppUser;
 
 class RegistrationController extends Controller{
-    
+
     /**
      * register - description
      *
