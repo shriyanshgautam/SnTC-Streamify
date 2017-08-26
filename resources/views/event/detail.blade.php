@@ -41,6 +41,11 @@
     <div class="col-6 p-1">
         <b>Event Subscribers: </b>{{$event->appUsers->count()}}
     </div>
+    <div class="col-12 p-1">
+        <b>FCM Response: </b><pre style="background:#263238;color:#ffffff;" class="p-2" id="fcm_response">
+
+        </pre>
+    </div>
     <div class="col-12 p-3">
         <img style="max-height:500px;max-width:500px;" src="{{str_replace("www.dropbox.com","dl.dropboxusercontent.com",$event->image)}}" />
     </div>
@@ -49,6 +54,11 @@
 <div class="row p-3" >
 
 </div>
+
+<script>
+    var data = JSON.parse('{!!$event->fcm_json_response!!}');
+    $('#fcm_response').text(JSON.stringify(data,null,' '));
+</script>
 
 
 

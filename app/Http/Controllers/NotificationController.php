@@ -74,13 +74,17 @@ class NotificationController extends Controller
         $notification->author_id=$request->author_id;
         $notification->stream_id=$request->stream_id;
         $notification->tag_id=$request->tag_id;
+
+        $response = $this->sendFcmNotification($notification);
+        $notification->fcm_json_response = $response;
+        
         $notification->save();
 
         if(isset($request->content_ids)){
             $notification->contents()->sync($request->content_ids);
         }
 
-        $this->sendFcmNotification($notification);
+
 
         return redirect('notifications')->with(['status'=>'success','status_string'=>'Added '.$notification->name.'!']);;
 

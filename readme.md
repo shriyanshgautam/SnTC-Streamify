@@ -10,6 +10,24 @@ Ubuntu 16.04 : [Follow this tutorial](https://www.digitalocean.com/community/tut
 ## Conponents
 ### Docker
 ### Laravel 5.4
+
+Command :
+
+Add and install a dependency
+```
+docker run --rm -v $(pwd):/app composer/composer require <package_name:version>
+```
+
+Install dependency added to composer.json
+```
+docker run --rm -v $(pwd):/app composer/composer require
+```
+
+Execute artisan commands in app
+```
+docker-compose exec app php artisan <command>
+```
+
 ### MySql
 ### Naginx
 

@@ -44,11 +44,17 @@
     <div class="col-6 p-1">
         <b>Notification Likes: </b>{{$notification->appUsers->count()}}
     </div>
+
     <div class="col-6 p-1">
         <b>Notification Contents: </b>{{$notification->contents->count()}}
         <br /> @foreach($notification->contents as $content)
                 {{$content->title}}<br />({{$content->url}})<br />
              @endforeach
+    </div>
+    <div class="col-12 p-1">
+        <b>FCM Response: </b><pre style="background:#263238;color:#ffffff;" class="p-2" id="fcm_response">
+
+        </pre>
     </div>
     <div class="col-12 p-3">
         <img style="max-height:500px;max-width:500px;" src="{{str_replace("www.dropbox.com","dl.dropboxusercontent.com",$notification->image)}}" />
@@ -58,6 +64,10 @@
 <div class="row p-3" >
 
 </div>
+<script>
+    var data = JSON.parse('{!!$notification->fcm_json_response!!}');
+    $('#fcm_response').text(JSON.stringify(data,null,' '));
+</script>
 
 
 

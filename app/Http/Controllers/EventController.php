@@ -11,6 +11,7 @@ use App\Tag;
 use Carbon\Carbon;
 use App\Repositories\Dropbox;
 use Illuminate\Support\Facades\File;
+use App\Repositories\FirebaseCloudMessaging;
 
 class EventController extends Controller
 {
@@ -70,16 +71,20 @@ class EventController extends Controller
         $event->location_id = $request->location_id;
         $event->stream_id=$request->stream_id;
         $event->tag_id=$request->tag_id;
+
+        $response = $this->sendFcmNotification($event);
+        $event->fcm_json_response = $response;
+
         $event->save();
 
-        $this->sendFcmNotification($event);
+
 
         return redirect('events')->with(['status'=>'success','status_string'=>'Added '.$event->name.'!']);;
 
     }
 
     /**
-     * getDropboxLink - description    
+     * getDropboxLink - description
      *
      * @param  {type} $file      description
      * @param  {type} $fileName  description
