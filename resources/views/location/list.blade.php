@@ -3,6 +3,7 @@
 @section('main-content')
 
 @if (count($locations)>0)
+
 <table class="table table-hover">
   <thead>
     <tr>
@@ -10,9 +11,8 @@
       <th>Name</th>
       <th>Address</th>
       <th>Description</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>Zoom</th>
+      <th>Map</th>
+      <th>-</th>
     </tr>
   </thead>
   <tbody>
@@ -22,9 +22,9 @@
             <td>{{$location->name}}</td>
             <td>{{$location->address}}</td>
             <td>{{$location->description}}</td>
-            <td>{{$location->latitude}}</td>
-            <td>{{$location->longitude}}</td>
-            <td>{{$location->zoom}}</td>
+            <td><iframe width="200" height="200" frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?zoom={{$location->zoom}}&q={{$location->latitude}},{{$location->longitude}}&key={{$google_maps_api_key}}" allowfullscreen></iframe>
+            </td>
             <td>
                 <form action="locations/{{$location->id}}/edit/" method="get">
                     <button type="submit" class="btn btn-primary">
@@ -43,6 +43,39 @@
       @endforeach
   </tbody>
 </table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+
+
+    @if($locations->currentPage()!=1)
+        <li class="page-item">
+          <a class="page-link" href="{{$locations->previousPageUrl()}}" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="{{$locations->previousPageUrl()}}">{{$locations->currentPage()-1}}</a></li>
+    @else
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+
+    @endif
+    <li class="page-item active">
+      <a class="page-link" href="#">{{$locations->currentPage()}}<span class="sr-only">(cuurent)</span></a>
+    </li>
+
+    @if($locations->hasMorePages())
+        <li class="page-item"><a class="page-link" href="{{$locations->nextPageUrl()}}">{{$locations->currentPage()+1}}</a></li>
+        <li class="page-item">
+          <a class="page-link" href="{{$locations->nextPageUrl()}}">Next</a>
+        </li>
+    @else
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Next</a>
+        </li>
+    @endif
+  </ul>
+</nav>
+
 @else
     <div class="alert alert-warning">
         No Locations available!

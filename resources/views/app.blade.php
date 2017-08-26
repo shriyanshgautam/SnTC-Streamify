@@ -5,10 +5,20 @@
         <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <!-- Location PIcker -->
+        @if(isset($google_maps_api_key))
+        <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=false&libraries=places&key={{$google_maps_api_key}}'></script>
+        @endif
+        <script type="text/javascript" src="{{ URL::asset('js/locationpicker.jquery.min.js') }}"></script>
+
+
+        <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}"/>
+        <!-- Icons and Fonts -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
-        <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+        <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary app-nav">
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

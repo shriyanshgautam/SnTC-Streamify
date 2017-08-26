@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Location;
+use App\Repositories\Secrets;
 
 class LocationController extends Controller
 {
@@ -14,8 +15,9 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $locations = Location::all();
-        return view('location.list',['locations'=>$locations]);
+        $locations = Location::paginate(3);
+        $secrets = new Secrets();
+        return view('location.list',['locations'=>$locations,'google_maps_api_key'=>$secrets->getGoogleMapsApiKey()]);
     }
 
     /**
@@ -25,7 +27,8 @@ class LocationController extends Controller
      */
     public function create()
     {
-        return view('location.create');
+        $secrets = new Secrets();
+        return view('location.create',['google_maps_api_key'=>$secrets->getGoogleMapsApiKey()]);
     }
 
     /**
@@ -68,8 +71,9 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
+        $secrets = new Secrets();
         $location = Location::find($id);
-        return view('location.create',['location'=>$location]);
+        return view('location.create',['location'=>$location,'google_maps_api_key'=>$secrets->getGoogleMapsApiKey()]);
     }
 
     /**

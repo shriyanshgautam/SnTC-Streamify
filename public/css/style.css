@@ -1,0 +1,12 @@
+body{
+    display: flex;
+    flex-flow: column;
+}
+.app-nav{
+    height:70px;
+}
+.container{
+    flex:1;
+    display:flex;
+    flex-flow: column;
+}

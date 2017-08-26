@@ -10,15 +10,16 @@
 
 
 @section('content')
-    <h3 class="p-3">Locations</h3>
-    <div class="row">
+
+    <div class="row" style="display:flex;flex:1">
         <div class="col-4 p-3" >
+              <h3 class="p-3">Locations</h3>
               <ul class="list-group">
                 <li class="list-group-item"><a href="\locations">View Locations</a></li>
                 <li class="list-group-item"><a href="\locations\create">Create Locations</a></li>
               </ul>
         </div>
-        <div class="col-8 p-3">
+        <div class="col-8 p-3" style="overflow-y:scroll;flex:1">
             @yield('main-content')
 
         </div>

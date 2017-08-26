@@ -25,24 +25,24 @@ REQUEST TYPE : HTTP Post
 HEADERS  : "Authorization: Bearer <access token>"
            "Dropbox-API-Arg: {"path": "/Homework/math/Matrices.txt","mode": "add","autorename": true,"mute": false}"
            "Content-Type: application/octet-stream"
-           
+
             Options
             path: String(pattern="(/(.|[\r\n])*)|(ns:[0-9]+(/.*)?)|(id:.*)") Path in the user's Dropbox to save the file.
-            
+
             mode: WriteMode Selects what to do if the file already exists. The default for this union is add.
-            
-            autorename: Boolean If there's a conflict, as determined by mode, have the Dropbox server try to autorename 
+
+            autorename: Boolean If there's a conflict, as determined by mode, have the Dropbox server try to autorename
             the file to avoid conflict. The default for this field is False.
-            
+
             client_modified: Timestamp(format="%Y-%m-%dT%H:%M:%SZ")? The value to store as the client_modified timestamp.  
-            Dropbox automatically records the time at which the file was written to the Dropbox servers. It can also record an 
-            additional timestamp, provided by Dropbox desktop clients, mobile clients, and API apps of when the file was 
+            Dropbox automatically records the time at which the file was written to the Dropbox servers. It can also record an
+            additional timestamp, provided by Dropbox desktop clients, mobile clients, and API apps of when the file was
             actually created or modified. This field is optional.
-            
-            mute: Boolean Normally, users are made aware of any file modifications in their Dropbox account via 
-            notifications in the client software. If true, this tells the clients that this modification shouldn't result in a 
+
+            mute: Boolean Normally, users are made aware of any file modifications in their Dropbox account via
+            notifications in the client software. If true, this tells the clients that this modification shouldn't result in a
             user notification. The default for this field is False.
-           
+
 BODY : file as binary data
 
 ```
@@ -52,20 +52,20 @@ BODY : file as binary data
 ```
 URL : https://api.dropboxapi.com/2/sharing/create_shared_link
 REQUEST TYPE : HTTP Post
-HEADERS : "Authorization: Bearer <access token>" 
+HEADERS : "Authorization: Bearer <access token>"
           "Content-Type: application/json"
 BODY : {
            "path": "/Homework/Math/Prime_Numbers.txt",
            "short_url": false
        }
-       
+
        Options
        path: String The path to share.
-       
+
        short_url: Boolean Whether to return a shortened URL. The default for this field is False.
 
-       pending_upload: PendingUploadMode? If it's okay to share a path that does not yet exist, set this to either 
-       PendingUploadMode.file or PendingUploadMode.folder to indicate whether to assume it's a file or folder. This field is 
+       pending_upload: PendingUploadMode? If it's okay to share a path that does not yet exist, set this to either
+       PendingUploadMode.file or PendingUploadMode.folder to indicate whether to assume it's a file or folder. This field is
        optional.
 ```
 
@@ -84,7 +84,7 @@ BODY : { "data": {
            "to" : "bk3RNwTe3H0:CI2k_HHwgIpoDKCIZvvDMExUdFQ3P1..."
            "registration_ids" :["id1","id2",.....]
        }
-       
+
        Options
        data : JSON data to be sent to user device
        to : Firebase Token of the user (for sending notification to single user only)
@@ -98,6 +98,12 @@ BODY : { "data": {
 ```
 URL : https://maps.googleapis.com/maps/api/staticmap?parameters
 ```
+
+### JQuery Location Picker
+
+**[Location Picker Docs](http://logicify.github.io/jquery-locationpicker-plugin/)**
+
+[Missing API Key issue](https://github.com/Logicify/jquery-locationpicker-plugin/issues/85) - just enable the Javascript API and use the previous key no need to generate new key
 
 ## Official Documentation
 
@@ -115,4 +121,3 @@ Coding style
 ## License
 
 This project is licensed under the Apache License - see the [LICENSE](LICENSE.txt) file for details
-
