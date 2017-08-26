@@ -14,7 +14,7 @@ class AppPostController extends Controller
      */
     public function index()
     {
-        $app_posts = AppPost::all();
+        $app_posts = AppPost::orderBy('id','desc')->paginate(6);
         return view('app_post.list',['app_posts'=>$app_posts]);
     }
 

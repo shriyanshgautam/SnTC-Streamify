@@ -9,6 +9,8 @@ use App\Location;
 use App\Stream;
 use App\Tag;
 use Carbon\Carbon;
+use App\Repositories\Dropbox;
+use Illuminate\Support\Facades\File;
 
 class EventController extends Controller
 {
@@ -19,7 +21,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
+        $events = Event::orderBy('id','desc')->paginate(5);
         return view('event.list',['events'=>$events]);
     }
 
@@ -54,8 +56,15 @@ class EventController extends Controller
         $event->title = $request->title;
         $event->subtitle = $request->subtitle;
         $event->description = $request->description;
-        // TODO file handling
-        $event->image = '123.jpg';
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $url = $this->getDropboxLink($image,"event".Carbon::now()->timestamp.".jpg","/Events/");
+            $event->image = $url;
+        }else{
+            $event->image = "";
+        }
+
         $event->time = Carbon::parse($request->time);
         $event->author_id=$request->author_id;
         $event->location_id = $request->location_id;
@@ -63,10 +72,34 @@ class EventController extends Controller
         $event->tag_id=$request->tag_id;
         $event->save();
 
-
+        $this->sendFcmNotification($event);
 
         return redirect('events')->with(['status'=>'success','status_string'=>'Added '.$event->name.'!']);;
 
+    }
+
+    /**
+     * getDropboxLink - description    
+     *
+     * @param  {type} $file      description
+     * @param  {type} $fileName  description
+     * @param  {type} $directory description
+     * @return {type}            description
+     */
+    public function getDropboxLink($file,$fileName,$directory){
+        $dropbox = new Dropbox();
+        return $dropbox->uploadAndObtainSharableLink($file,$fileName,$directory);
+    }
+
+    /**
+     * sendFcmNotification - description
+     *
+     * @param  {type} $data description
+     * @return {type}       description
+     */
+    public function sendFcmNotification($data){
+        $firebaseCloudMessaging = new FirebaseCloudMessaging();
+        return $firebaseCloudMessaging->sendNotification($data,"DEBUG");
     }
 
     /**

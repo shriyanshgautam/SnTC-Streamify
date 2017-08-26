@@ -50,6 +50,9 @@
                 {{$content->title}}<br />({{$content->url}})<br />
              @endforeach
     </div>
+    <div class="col-12 p-3">
+        <img style="max-height:500px;max-width:500px;" src="{{str_replace("www.dropbox.com","dl.dropboxusercontent.com",$notification->image)}}" />
+    </div>
 
 </div>
 <div class="row p-3" >

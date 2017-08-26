@@ -7,24 +7,27 @@
   <thead>
     <tr>
       <th>#</th>
+      <th>-</th>
       <th>Name</th>
       <th>Position</th>
       <th>Level</th>
       <th>Email</th>
       <th>Contact</th>
-      <th>Image</th>
+
+      <th>-</th>
     </tr>
   </thead>
   <tbody>
       @foreach ($position_holders as $position_holder)
           <tr>
             <th scope="row">{{$position_holder->id}}</th>
+            <td><img width="56px" height="56px" src="{{str_replace("www.dropbox.com","dl.dropboxusercontent.com",$position_holder->image)}}" /></td>
             <td>{{$position_holder->name}}</td>
             <td>{{$position_holder->position}}</td>
             <td>{{$position_holder->level}}</td>
             <td>{{$position_holder->email}}</td>
             <td>{{$position_holder->contact}}</td>
-            <td>{{$position_holder->image}}</td>
+
             <td>
                 <form action="position_holders/{{$position_holder->id}}/edit/" method="get">
                     <button type="submit" class="btn btn-primary">
@@ -43,6 +46,39 @@
       @endforeach
   </tbody>
 </table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+
+
+    @if($position_holders->currentPage()!=1)
+        <li class="page-item">
+          <a class="page-link" href="{{$position_holders->previousPageUrl()}}" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="{{$position_holders->previousPageUrl()}}">{{$position_holders->currentPage()-1}}</a></li>
+    @else
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+
+    @endif
+    <li class="page-item active">
+      <a class="page-link" href="#">{{$position_holders->currentPage()}}<span class="sr-only">(cuurent)</span></a>
+    </li>
+
+    @if($position_holders->hasMorePages())
+        <li class="page-item"><a class="page-link" href="{{$position_holders->nextPageUrl()}}">{{$position_holders->currentPage()+1}}</a></li>
+        <li class="page-item">
+          <a class="page-link" href="{{$position_holders->nextPageUrl()}}">Next</a>
+        </li>
+    @else
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Next</a>
+        </li>
+    @endif
+  </ul>
+</nav>
+
 @else
     <div class="alert alert-warning">
         No Position Holders available!

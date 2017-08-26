@@ -14,7 +14,7 @@ class BodyController extends Controller
      */
     public function index()
     {
-        $bodies = Body::all();
+        $bodies = Body::orderBy('id','desc')->paginate(5);
         return view('body.list',['bodies'=>$bodies]);
     }
 

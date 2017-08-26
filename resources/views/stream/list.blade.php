@@ -10,8 +10,8 @@
       <th>Title</th>
       <th>Subtitle</th>
       <th>Description</th>
-      <th>Image</th>
       <th>Author</th>
+      <th>Subscribers</th>
     </tr>
   </thead>
   <tbody>
@@ -21,9 +21,10 @@
             <td>{{$stream->title}}</td>
             <td>{{$stream->subtitle}}</td>
             <td>{{$stream->description}}</td>
-            <td>{{$stream->image}}</td>
-            <!-- Accessing foriegn key table values -->
             <td>{{$stream->author->name}}</td>
+            <td>{{$stream->appUsers->count()}}</td>
+            <!-- Accessing foriegn key table values -->
+
             <td>
                 <!-- <form action="streams/{{$stream->id}}/edit/" method="get">
                     <button type="submit" class="btn btn-primary">
@@ -40,6 +41,39 @@
       @endforeach
   </tbody>
 </table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+
+
+    @if($streams->currentPage()!=1)
+        <li class="page-item">
+          <a class="page-link" href="{{$streams->previousPageUrl()}}" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="{{$streams->previousPageUrl()}}">{{$streams->currentPage()-1}}</a></li>
+    @else
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+
+    @endif
+    <li class="page-item active">
+      <a class="page-link" href="#">{{$streams->currentPage()}}<span class="sr-only">(cuurent)</span></a>
+    </li>
+
+    @if($streams->hasMorePages())
+        <li class="page-item"><a class="page-link" href="{{$streams->nextPageUrl()}}">{{$streams->currentPage()+1}}</a></li>
+        <li class="page-item">
+          <a class="page-link" href="{{$streams->nextPageUrl()}}">Next</a>
+        </li>
+    @else
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Next</a>
+        </li>
+    @endif
+  </ul>
+</nav>
+
 @else
     <div class="alert alert-warning">
         No Streams available!

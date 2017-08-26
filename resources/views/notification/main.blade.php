@@ -10,10 +10,11 @@
 
 
 @section('content')
-    <h3 class="p-3">Notifications</h3>
-    <div class="row">
+
+    <div class="row" style="display:flex;flex:1">
         <div class="col-4 p-3" >
-              <ul class="list-group">
+              <h3 class="p-2">Notifications</h3>
+              <ul class="list-group p-2">
                 <li class="list-group-item"><a href="\notifications">View Notifications</a></li>
                 <li class="list-group-item"><a href="\notifications\create">Create New Notifications</a></li>
               </ul>

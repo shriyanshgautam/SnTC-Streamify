@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\PositionHolder;
+use App\Repositories\Dropbox;
+use Illuminate\Support\Facades\File;
 
 class PositionHolderController extends Controller
 {
@@ -14,7 +16,7 @@ class PositionHolderController extends Controller
      */
     public function index()
     {
-        $position_holders = PositionHolder::all();
+        $position_holders = PositionHolder::orderBy('id','desc')->paginate(5);
         return view('position_holder.list',['position_holders'=>$position_holders]);
     }
 
@@ -42,8 +44,14 @@ class PositionHolderController extends Controller
         $position_holder->level = $request->level;
         $position_holder->email = $request->email;
         $position_holder->contact = $request->contact;
-        //TODO file handler
-        $position_holder->image = '123.jpg';
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $url = $this->getDropboxLink($image,"position_holder".$request->email.$request->contact.".jpg","/PositionHolders/");
+            $position_holder->image = $url;
+        }else{
+            $position_holder->image = "";
+        }
 
         $position_holder->save();
 
@@ -89,11 +97,22 @@ class PositionHolderController extends Controller
         $position_holder->level = $request->level;
         $position_holder->email = $request->email;
         $position_holder->contact = $request->contact;
-        //TODO file handler
-        $position_holder->image = '123.jpg';
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $url = $this->getDropboxLink($image,"position_holder".$request->email.$request->contact.".jpg","/PositionHolders/");
+            $position_holder->image = $url;
+        }else{
+            $position_holder->image = "";
+        }
 
         $position_holder->save();
         return redirect('position_holders')->with(['status'=>'success','status_string'=>'Updated '.$position_holder->name.' !']);
+    }
+
+    public function getDropboxLink($file,$fileName,$directory){
+        $dropbox = new Dropbox();
+        return $dropbox->uploadAndObtainSharableLink($file,$fileName,$directory);
     }
 
     /**

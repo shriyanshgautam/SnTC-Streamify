@@ -14,7 +14,7 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        $feedbacks = Feedback::all();
+        $feedbacks = Feedback::orderBy('id','desc')->paginate(5);
         return view('feedback.list',['feedbacks'=>$feedbacks]);
     }
 

@@ -9,9 +9,9 @@
 @endif
 
 @if (!isset($notification))
-    <form method="post" action="/notifications">
+    <form method="post" action="/notifications" enctype="multipart/form-data">
 @else
-    <form method="post" action="/notifications/{{$notification->id}}">
+    <form method="post" action="/notifications/{{$notification->id}}" enctype="multipart/form-data">
         <input type="hidden" name="_method" value="PUT">
 @endif
     {{ csrf_field() }}

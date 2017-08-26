@@ -42,6 +42,39 @@
       @endforeach
   </tbody>
 </table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+
+
+    @if($contents->currentPage()!=1)
+        <li class="page-item">
+          <a class="page-link" href="{{$contents->previousPageUrl()}}" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="{{$contents->previousPageUrl()}}">{{$contents->currentPage()-1}}</a></li>
+    @else
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+
+    @endif
+    <li class="page-item active">
+      <a class="page-link" href="#">{{$contents->currentPage()}}<span class="sr-only">(cuurent)</span></a>
+    </li>
+
+    @if($contents->hasMorePages())
+        <li class="page-item"><a class="page-link" href="{{$contents->nextPageUrl()}}">{{$contents->currentPage()+1}}</a></li>
+        <li class="page-item">
+          <a class="page-link" href="{{$contents->nextPageUrl()}}">Next</a>
+        </li>
+    @else
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Next</a>
+        </li>
+    @endif
+  </ul>
+</nav>
+
 @else
     <div class="alert alert-warning">
         No Contents available!

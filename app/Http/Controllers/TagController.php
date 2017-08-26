@@ -14,7 +14,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::all();
+        $tags = Tag::orderBy('id','desc')->paginate(6);;
         return view('tag.list',['tags'=>$tags]);
     }
 

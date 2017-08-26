@@ -10,15 +10,16 @@
 
 
 @section('content')
-    <h3 class="p-3">Position Holders</h3>
-    <div class="row">
+
+    <div class="row" style="display:flex;flex:1">
         <div class="col-4 p-3" >
-              <ul class="list-group">
+              <h3 class="p-2">Position Holders</h3>
+              <ul class="list-group p-2">
                 <li class="list-group-item"><a href="\position_holders">View Position Holders</a></li>
                 <li class="list-group-item"><a href="\position_holders\create">Create Position Holders</a></li>
               </ul>
         </div>
-        <div class="col-8 p-3">
+        <div class="col-8 p-3" style="overflow-x:scroll;flex:1">
             @yield('main-content')
 
         </div>

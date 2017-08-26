@@ -13,8 +13,8 @@
 
     <div class="row" style="display:flex;flex:1">
         <div class="col-4 p-3" >
-              <h3 class="p-3">Locations</h3>
-              <ul class="list-group">
+              <h3 class="p-2">Locations</h3>
+              <ul class="list-group p-2">
                 <li class="list-group-item"><a href="\locations">View Locations</a></li>
                 <li class="list-group-item"><a href="\locations\create">Create Locations</a></li>
               </ul>

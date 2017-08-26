@@ -3,9 +3,9 @@
 @section('main-content')
 
 @if (!isset($position_holder))
-    <form method="post" action="/position_holders">
+    <form method="post" action="/position_holders" enctype="multipart/form-data">
 @else
-    <form method="post" action="/position_holders/{{$position_holder->id}}">
+    <form method="post" action="/position_holders/{{$position_holder->id}}" enctype="multipart/form-data">
         <input type="hidden" name="_method" value="PUT">
 @endif
 

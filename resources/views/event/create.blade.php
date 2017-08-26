@@ -9,9 +9,9 @@
 @endif
 
 @if (!isset($event))
-    <form method="post" action="/events">
+    <form method="post" action="/events" enctype="multipart/form-data">
 @else
-    <form method="post" action="/events/{{$event->id}}">
+    <form method="post" action="/events/{{$event->id}}" enctype="multipart/form-data">
         <input type="hidden" name="_method" value="PUT">
 @endif
     {{ csrf_field() }}

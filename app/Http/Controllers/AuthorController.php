@@ -7,7 +7,6 @@ use App\Author;
 use App\Stream;
 use App\Repositories\Dropbox;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Input;
 
 class AuthorController extends Controller
 {
@@ -19,7 +18,7 @@ class AuthorController extends Controller
     public function index()
     {
         //
-        $authors = Author::paginate(5);
+        $authors = Author::orderBy('id','desc')->paginate(5);
         return view('author.list',['authors'=>$authors]);
     }
 

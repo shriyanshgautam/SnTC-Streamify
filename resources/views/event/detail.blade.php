@@ -41,6 +41,9 @@
     <div class="col-6 p-1">
         <b>Event Subscribers: </b>{{$event->appUsers->count()}}
     </div>
+    <div class="col-12 p-3">
+        <img style="max-height:500px;max-width:500px;" src="{{str_replace("www.dropbox.com","dl.dropboxusercontent.com",$event->image)}}" />
+    </div>
 
 </div>
 <div class="row p-3" >

@@ -15,7 +15,7 @@ class ContentController extends Controller
      */
     public function index()
     {
-        $contents = Content::all();
+        $contents = Content::orderBy('id','desc')->paginate(6);
         return view('content.list',['contents'=>$contents]);
     }
 
@@ -80,16 +80,11 @@ class ContentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if(Notification::find($request->notification_id)==null){
-            return back()->withErrors(['Notification not found.', 'Notification not found.'])->withInput();
-        }
-
         $content = Content::find($id);
         $content->title = $request->title;
         $content->text = $request->text;
         $content->type = $request->type;
         $content->url = $request->url;
-        $content->notification_id = $request->notification_id;
         $content->save();
 
         return redirect('contents')->with(['status'=>'success','status_string'=>'Updated '.$content->name.'!']);;

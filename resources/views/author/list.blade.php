@@ -7,10 +7,11 @@
   <thead>
     <tr>
       <th>#</th>
+      <th>-</th>
       <th>Name</th>
       <th>Email</th>
       <th>Contact</th>
-      <th>Image</th>
+
       <th>
           -
       </th>
@@ -20,10 +21,10 @@
       @foreach ($authors as $author)
           <tr>
             <th scope="row">{{$author->id}}</th>
+            <td><img width="56px" height="56px" src="{{str_replace("www.dropbox.com","dl.dropboxusercontent.com",$author->image)}}" /></td>
             <td>{{$author->name}}</td>
             <td>{{$author->email}}</td>
             <td>{{$author->contact}}</td>
-            <td><img width="64px" height="64px" src="{{str_replace("www.dropbox.com","dl.dropboxusercontent.com",$author->image)}}" /></td>
             <td>
                 <form action="authors/{{$author->id}}/edit/" method="get">
                     <button type="submit" class="btn btn-primary">

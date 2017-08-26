@@ -9,6 +9,7 @@
       <th>#</th>
       <th>Name</th>
       <th>Level</th>
+       <th>-</th>
     </tr>
   </thead>
   <tbody>
@@ -19,23 +20,58 @@
             <td>{{$tag->level}}</td>
 
             <td>
-                <form action="tags/{{$tag->id}}/edit/" method="get">
+                <div class="row" style="width:100px;">
+                <form class="col-6" action="tags/{{$tag->id}}/edit/" method="get">
                     <button type="submit" class="btn btn-primary">
                         <i class="material-icons md-18" style="font-size:16px;">mode_edit</i>
                     </button>
                 </form>
-                <form method="post" action="/tags/{{$tag->id}}">
+                <form class="col-6" method="post" action="/tags/{{$tag->id}}">
                     <input type="hidden" name="_method" value="DELETE">
                     <button type="submit" class="btn btn-danger">
                         {{ csrf_field() }}
                         <i class="material-icons md-18" style="font-size:16px;">delete</i>
                     </button>
                 </form>
+                </div>
             </td>
           </tr>
       @endforeach
   </tbody>
 </table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+
+
+    @if($tags->currentPage()!=1)
+        <li class="page-item">
+          <a class="page-link" href="{{$tags->previousPageUrl()}}" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="{{$tags->previousPageUrl()}}">{{$tags->currentPage()-1}}</a></li>
+    @else
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+
+    @endif
+    <li class="page-item active">
+      <a class="page-link" href="#">{{$tags->currentPage()}}<span class="sr-only">(cuurent)</span></a>
+    </li>
+
+    @if($tags->hasMorePages())
+        <li class="page-item"><a class="page-link" href="{{$tags->nextPageUrl()}}">{{$tags->currentPage()+1}}</a></li>
+        <li class="page-item">
+          <a class="page-link" href="{{$tags->nextPageUrl()}}">Next</a>
+        </li>
+    @else
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Next</a>
+        </li>
+    @endif
+  </ul>
+</nav>
+
 @else
     <div class="alert alert-warning">
         No Tags available!

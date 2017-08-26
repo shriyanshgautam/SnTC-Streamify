@@ -14,7 +14,7 @@ class CollegeController extends Controller
      */
     public function index()
     {
-        $colleges = College::all();
+        $colleges = College::orderBy('id','desc')->paginate(5);
         return view('college.list',['colleges'=>$colleges]);
     }
 

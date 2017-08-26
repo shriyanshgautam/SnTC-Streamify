@@ -15,7 +15,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $locations = Location::paginate(3);
+        $locations = Location::orderBy('id','desc')->paginate(3);
         $secrets = new Secrets();
         return view('location.list',['locations'=>$locations,'google_maps_api_key'=>$secrets->getGoogleMapsApiKey()]);
     }

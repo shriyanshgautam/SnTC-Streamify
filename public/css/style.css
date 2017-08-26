@@ -1,6 +1,8 @@
 body{
     display: flex;
     flex-flow: column;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
 }
 .app-nav{
     height:70px;
@@ -9,4 +11,9 @@ body{
     flex:1;
     display:flex;
     flex-flow: column;
+}
+
+h3{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
 }

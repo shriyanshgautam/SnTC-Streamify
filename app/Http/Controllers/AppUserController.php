@@ -14,7 +14,7 @@ class AppUserController extends Controller
      */
     public function index()
     {
-        $app_users = AppUser::paginate(30);
+        $app_users = AppUser::orderBy('id','desc')->paginate(10);
         return view('app_user.list',['app_users'=>$app_users]);
     }
 

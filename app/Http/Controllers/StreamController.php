@@ -7,6 +7,9 @@ use App\Stream;
 use App\Author;
 use App\Body;
 use App\PositionHolder;
+use App\Repositories\Dropbox;
+use Illuminate\Support\Facades\File;
+use Carbon\Carbon;
 
 class StreamController extends Controller
 {
@@ -17,7 +20,7 @@ class StreamController extends Controller
      */
     public function index()
     {
-        $streams = Stream::all();
+        $streams = Stream::orderBy('id','asc')->paginate(8);;
         return view('stream.list',['streams'=>$streams]);
     }
 
@@ -48,8 +51,15 @@ class StreamController extends Controller
         $stream->title = $request->title;
         $stream->subtitle = $request->subtitle;
         $stream->description = $request->description;
-        // TODO file handling
-        $stream->image = '123.jpg';
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $url = $this->getDropboxLink($image,"stream".Carbon::now()->timestamp.".jpg","/Streams/");
+            $stream->image = $url;
+        }else{
+            $stream->image = "";
+        }
+
         $stream->author_id=$request->author_id;
         $stream->save();
 
@@ -107,8 +117,15 @@ class StreamController extends Controller
         $stream->title = $request->title;
         $stream->subtitle = $request->subtitle;
         $stream->description = $request->description;
-        // TODO file handling
-        $stream->image = '123.jpg';
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $url = $this->getDropboxLink($image,"stream".Carbon::now()->timestamp.".jpg","/Streams/");
+            $stream->image = $url;
+        }else{
+            $stream->image = "";
+        }
+
         $stream->author_id=$request->author_id;
         $stream->save();
 
@@ -119,6 +136,19 @@ class StreamController extends Controller
 
         return redirect('streams\\'.$id)->with(['status'=>'success','status_string'=>'Updated '.$stream->name.'!']);;
 
+    }
+
+    /**
+     * getDropboxLink - description
+     *
+     * @param  {type} $file      description
+     * @param  {type} $fileName  description
+     * @param  {type} $directory description
+     * @return {type}            description
+     */
+    public function getDropboxLink($file,$fileName,$directory){
+        $dropbox = new Dropbox();
+        return $dropbox->uploadAndObtainSharableLink($file,$fileName,$directory);
     }
 
     /**

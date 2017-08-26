@@ -9,9 +9,9 @@
 @endif
 
 @if (!isset($stream))
-    <form method="post" action="/streams">
+    <form method="post" action="/streams" enctype="multipart/form-data">
 @else
-    <form method="post" action="/streams/{{$stream->id}}">
+    <form method="post" action="/streams/{{$stream->id}}" enctype="multipart/form-data">
         <input type="hidden" name="_method" value="PUT">
 @endif
 
