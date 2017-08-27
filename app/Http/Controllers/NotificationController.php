@@ -74,7 +74,7 @@ class NotificationController extends Controller
         $notification->author_id=$request->author_id;
         $notification->stream_id=$request->stream_id;
         $notification->tag_id=$request->tag_id;
-        $notification->fcm_json_response = "";
+        $notification->fcm_json_response = json_decode(["response"=>"null"]);
         $notification->save();
 
         if(isset($request->content_ids)){
