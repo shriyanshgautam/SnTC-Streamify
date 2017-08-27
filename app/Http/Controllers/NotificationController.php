@@ -75,14 +75,19 @@ class NotificationController extends Controller
         $notification->stream_id=$request->stream_id;
         $notification->tag_id=$request->tag_id;
 
-        $response = $this->sendFcmNotification($notification);
-        $notification->fcm_json_response = $response;
-        
         $notification->save();
 
         if(isset($request->content_ids)){
             $notification->contents()->sync($request->content_ids);
         }
+
+        $insertedNotification = Notification::with(['author','stream','tags','contents'])->get();
+        $fcmData["type"]=1;
+        $fcmData["notification"]=$insertedNotification;
+        $response = $this->sendFcmNotification($fcmData);
+        $notification->fcm_json_response = $response;
+
+        $notification->save();
 
 
 
