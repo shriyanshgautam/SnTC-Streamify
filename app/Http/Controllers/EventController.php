@@ -74,7 +74,7 @@ class EventController extends Controller
         $event->fcm_json_response = json_encode(["response"=>"null"]);
         $event->save();
 
-        $insertedStream = Notification::with(['author','stream','tags','location'])->get();
+        $insertedStream = Notification::with(['author','stream','tag','location'])->get();
         $fcmData["type"]=2;
         $fcmData["event"]=$insertedStream;
         $response = $this->sendFcmNotification($event);
