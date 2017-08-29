@@ -48,6 +48,8 @@ Route::post('app/get_streams','AppController@get_streams');
 
 Route::post('app/get_events','AppController@get_events');
 
+Route::post('app/get_notifications','AppController@get_notifications');
+
 Route::post('subscribe','SubscribeController@subscribe');
 
 
