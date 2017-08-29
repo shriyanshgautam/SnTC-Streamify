@@ -81,9 +81,15 @@ class NotificationController extends Controller
             $notification->contents()->sync($request->content_ids);
         }
 
-        $insertedNotification = Notification::with(['author','stream','tag','contents'])->get();
+        //Data to Big only if error page goes as notification
+        $insertedNotification = Notification::with(['author','stream','tag','contents'])->find($notification->id);
         $fcmData["type"]=1;
         $fcmData["notification"]=$insertedNotification;
+        $fcmData["notification"]["user_like_type"]=3;//FOR NEUTRAL
+        //TODO
+        $fcmData["notification"]["likes"]=0;
+        $fcmData["notification"]["dislikes"]=0;
+
         $response = $this->sendFcmNotification($fcmData);
         $notification->fcm_json_response = $response;
 
