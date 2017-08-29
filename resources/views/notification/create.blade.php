@@ -41,21 +41,21 @@
         <label for="exampleFormControlSelect1">Type</label>
         <select name="type" class="form-control" id="exampleFormControlSelect1">
             @if(isset($notification))
-                <option value="0" @if($notification->type==0) selected @endif >Text</option>
+                <option value="1" @if($notification->type==1) selected @endif >Text</option>
             @else
-                <option value="0">Text</option>
+                <option value="1">Text</option>
             @endif
 
             @if(isset($notification))
-                <option value="1" @if($notification->type==1) selected @endif >Image</option>
+                <option value="2" @if($notification->type==2) selected @endif >Image</option>
             @else
-                <option value="1">Image</option>
+                <option value="2">Image</option>
             @endif
 
             @if(isset($notification))
-                <option value="2" @if($notification->type==2) selected @endif >Video</option>
+                <option value="3" @if($notification->type==3) selected @endif >Video</option>
             @else
-                <option value="2">Video</option>
+                <option value="3">Video</option>
             @endif
         </select>
      </div>
@@ -113,7 +113,7 @@
 
         <div class="form-group">
             <label for="exampleFormControlSelect1">Select Content</label>
-            <select name="content_ids[]" class="form-control" multiple id="exampleFormControlSelect1">
+            <select name="content_ids[]" class="form-control js-example-basic-multiple multi-select" multiple id="exampleFormControlSelect1">
                 @foreach ($contents as $content)
                      @if(isset($notification))
                          <option value="{{$content->id}}" @if($content->id == $notification->contents->id) selected @endif >{{$content->name}}</option>
@@ -143,4 +143,12 @@
     </div>
 
 </form>
+
+
+<script>
+
+  $('.multi-select').select2();
+
+
+</script>
 @endsection

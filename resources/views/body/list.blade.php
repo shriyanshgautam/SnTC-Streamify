@@ -72,7 +72,7 @@
         </li>
     @endif
   </ul>
-<body
+</nav>
 @else
     <div class="alert alert-warning">
         No Bodies available!
