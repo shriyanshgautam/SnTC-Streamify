@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', 'Page Title')
+@section('title', 'Notifications')
 
 <!-- @section('sidebar')
     @parent
