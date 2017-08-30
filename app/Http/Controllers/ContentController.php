@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Content;
 use App\Notification;
+use Carbon\Carbon;
+use App\Repositories\Dropbox;
+use Illuminate\Support\Facades\File;
 
 class ContentController extends Controller
 {
@@ -15,7 +18,7 @@ class ContentController extends Controller
      */
     public function index()
     {
-        $contents = Content::orderBy('id','desc')->paginate(6);
+        $contents = Content::orderBy('id','desc')->paginate(5);
         return view('content.list',['contents'=>$contents]);
     }
 
@@ -41,6 +44,16 @@ class ContentController extends Controller
         $content->title = $request->title;
         $content->text = $request->text;
         $content->type = $request->type;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $url = $this->getDropboxLink($image,"content".Carbon::now()->timestamp.".jpg","/Contents/");
+            $content->image = $url;
+        }else{
+            $content->image = "";
+        }
+
+        $content->video_id = $request->video_id;
         $content->url = $request->url;
         $content->save();
 
@@ -84,11 +97,34 @@ class ContentController extends Controller
         $content->title = $request->title;
         $content->text = $request->text;
         $content->type = $request->type;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $url = $this->getDropboxLink($image,"content".Carbon::now()->timestamp.".jpg","/Contents/");
+            $content->image = $url;
+        }else{
+            $content->image = "";
+        }
+
+        $content->video_id = $request->video_id;
         $content->url = $request->url;
         $content->save();
 
         return redirect('contents')->with(['status'=>'success','status_string'=>'Updated '.$content->name.'!']);;
 
+    }
+
+    /**
+     * getDropboxLink - description
+     *
+     * @param  {type} $file      description
+     * @param  {type} $fileName  description
+     * @param  {type} $directory description
+     * @return {type}            description
+     */
+    public function getDropboxLink($file,$fileName,$directory){
+        $dropbox = new Dropbox();
+        return $dropbox->uploadAndObtainSharableLink($file,$fileName,$directory);
     }
 
     /**
@@ -100,8 +136,14 @@ class ContentController extends Controller
     public function destroy($id)
     {
         $content = Content::find($id);
-        $content->delete();
-        return redirect('contents')->with(['status'=>'success','status_string'=>'Deleted '.$content->name.' !']);
+        $notifications = $content->notifications()->count();
+        if($notifications>0){
+            return redirect('contents')->with(['status'=>'danger','status_string'=>'Cannot Delete '.$content->title.' ! Has some dependecy.']);
+        }else{
+            $content->delete();
+            return redirect('contents')->with(['status'=>'success','status_string'=>'Deleted '.$content->name.' !']);
+
+        }
 
 
     }

@@ -48,7 +48,7 @@
     <div class="col-6 p-1">
         <b>Notification Contents: </b>{{$notification->contents->count()}}
         <br /> @foreach($notification->contents as $content)
-                {{$content->title}}<br />({{$content->url}})<br />
+                <b>{{$content->title}}</b>({{$content->image}}{{$content->video_id}})<br />
              @endforeach
     </div>
     <div class="col-12 p-1">

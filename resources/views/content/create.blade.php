@@ -9,9 +9,9 @@
 @endif
 
 @if (!isset($content))
-    <form method="post" action="/contents">
+    <form method="post" action="/contents" enctype="multipart/form-data">
 @else
-    <form method="post" action="/contents/{{$content->id}}">
+    <form method="post" action="/contents/{{$content->id}}" enctype="multipart/form-data">
         <input type="hidden" name="_method" value="PUT">
 @endif
 
@@ -31,23 +31,29 @@
         <label for="exampleFormControlSelect1">Type</label>
         <select name="type" class="form-control" id="exampleFormControlSelect1">
             @if(isset($content))
-                <option value="0" @if($content->type==0) selected @endif >Text</option>
+                <option value="2" @if($content->type==2) selected @endif >Image</option>
             @else
-                <option value="0">Text</option>
+                <option value="2">Image</option>
             @endif
 
             @if(isset($content))
-                <option value="1" @if($content->type==1) selected @endif >Image</option>
+                <option value="3" @if($content->type==3) selected @endif >Video</option>
             @else
-                <option value="1">Image</option>
-            @endif
-
-            @if(isset($content))
-                <option value="2" @if($content->type==2) selected @endif >Video</option>
-            @else
-                <option value="2">Video</option>
+                <option value="3">Video</option>
             @endif
         </select>
+     </div>
+
+     <div class="form-group">
+         <label for="exampleInputFile">Image</label>
+         <input type="file" name="image" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+         <small id="fileHelp" class="form-text text-muted">Must be square.</small>
+     </div>
+
+     <div class="form-group">
+         <label for="exampleInputEmail1">Youtube Video Id</label>
+         <input type="name" name="video_id" value="{{$content->video_id or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Video Id">
+         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
      </div>
 
      <div class="form-group">

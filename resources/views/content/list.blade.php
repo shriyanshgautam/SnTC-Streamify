@@ -10,7 +10,8 @@
       <th>Title</th>
       <th>Text</th>
       <th>Type</th>
-      <th>Url</th>
+      <th>Image</th>
+      <th>Video</th>
       <th>
           -
       </th>
@@ -23,7 +24,8 @@
             <td>{{$content->title}}</td>
             <td>{{$content->text}}</td>
             <td>{{$content->type}}</td>
-            <td>{{$content->url}}</td>
+            <td><img width="64px" height="64px" src="{{str_replace("www.dropbox.com","dl.dropboxusercontent.com",$content->image)}}" /></td>
+            <td><img style="width:96px;height:64;"src="https://img.youtube.com/vi/{{$content->video_id}}/0.jpg"/></td>
             <td>
                 <form action="contents/{{$content->id}}/edit/" method="get">
                     <button type="submit" class="btn btn-primary">
