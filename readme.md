@@ -27,7 +27,14 @@ Execute artisan commands in app
 ```
 docker-compose exec app php artisan <command>
 ```
+For this error
+FatalErrorException in LoginController.php line 7:
+main(): Failed opening required '../../../vendor/autoload.php' (include_path='.:/usr/local/lib/php')
 
+run
+```
+docker run --rm -v $(pwd):/app composer/composer update --no-scripts
+```
 ### MySql
 ### Nginx
 
