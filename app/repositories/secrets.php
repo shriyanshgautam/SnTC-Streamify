@@ -19,6 +19,8 @@ class Secrets{
     protected $dropboxSharedLinkUrl = "";
     protected $dropboxAuthHeader = "";
 
+    protected $googleOAuthClientId="";
+
     public function __construct(){
 
         /**
@@ -33,6 +35,7 @@ class Secrets{
         $this->dropboxAuthHeader = env('DROPBOX_AUTH_KEY',"");
 
         $this->googleMapsApiKey= env('GOOGLE_MAPS_API_KEY',"");
+        $this->googleOAuthClientId = env('GOOGLE_OAUTH_CLIENT',"");
     }
 
     /**
@@ -90,11 +93,20 @@ class Secrets{
     }
 
     /**
-     * getGoogleMapsApiKey - description    
+     * getGoogleMapsApiKey - description
      *
      * @return {type}  description
      */
     public function getGoogleMapsApiKey(){
         return $this->googleMapsApiKey;
+    }
+
+    /**
+     * getGoogleOAuthClientId - description
+     *
+     * @return {type}  description
+     */
+    public function getGoogleOAuthClientId(){
+        return $this->googleOAuthClientId;
     }
 }

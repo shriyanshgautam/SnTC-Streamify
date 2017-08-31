@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\File;
 
 class PositionHolderController extends Controller
 {
+    public function __construct(){
+        $this->middleware('google_auth');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -13,6 +13,9 @@ use Carbon\Carbon;
 
 class StreamController extends Controller
 {
+    public function __construct(){
+        $this->middleware('google_auth');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -7,6 +7,9 @@ use App\Body;
 
 class BodyController extends Controller
 {
+    public function __construct(){
+        $this->middleware('google_auth');
+    }
     /**
      * Display a listing of the resource.
      *
