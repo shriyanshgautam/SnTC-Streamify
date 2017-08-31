@@ -52,6 +52,7 @@ Route::post('app/get_notifications','AppController@get_notifications');
 
 Route::post('app/subscribe','AppController@subscribe');
 
+Route::post('app/unsubscribe','AppController@unsubscribe');
 
 
 
