@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>SnTC Streamify: @yield('title')</title>
+        <title>SnTC Streamify</title>
         <meta name="google-signin-client_id" content="954600717616-ccrfigdrmu2iqjh3t5j3cd7vtm6pjm8c.apps.googleusercontent.com">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
@@ -8,7 +8,6 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
         <!-- <script src="{{ URL::asset('js/bootstrap-tagsinput.min.js') }}"></script> -->
         <!-- Location PIcker -->
@@ -23,64 +22,69 @@
         <!-- Icons and Fonts -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
-    <body>
-        <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary app-nav">
+    <body class="bg-dark">
+        <!-- <nav class="navbar navbar-toggleable-md navbar-inverse bg-dark app-nav">
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <a class="navbar-brand" href="#"><img style="height:45px;" src="{{ URL::to('/') }}/images/ic_logo1.png"/></a>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
 
-              <li class="nav-item active">
-                <a class="nav-link" href="/app_users">Users</a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="/streams">Streams</a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="/notifications">Notifications</a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="/events">Events</a>
-              </li>
-              <li class="nav-item dropdown active">
-                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Other Entries
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="/authors">Authors</a>
-                  <a class="dropdown-item" href="/bodies">Bodies</a>
-                  <a class="dropdown-item" href="/locations">Locations</a>
-                  <a class="dropdown-item" href="/position_holders">Position Holders</a>
-                  <a class="dropdown-item" href="/tags">Tags</a>
-                  <a class="dropdown-item" href="/colleges">Colleges</a>
-                </div>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="/contents">Contents</a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="/feedbacks">Feedbacks</a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="/app_posts">Posts</a>
-              </li>
-            </ul>
-            <!-- <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="text" placeholder="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form> -->
+
+
+
           </div>
-        </nav>
+        </nav> -->
 
         <!-- @section('sidebar')
             This is the master sidebar.
         @show -->
+        <div class="flex-container">
 
-        <div class="container">
-            @yield('content')
+            <div class="custom_row">
+                <a class="navbar-brand flex-item" href="#"><img style="height:55px;margin" src="{{ URL::to('/') }}/images/ic_logo1.png"/></a>
+                <div id="my-signin2" class="flex-item"></div>
+                <div id="msg" class="flex-item">
+
+                </div>
+            </div>
+            <form id="auth_form" action="\login" method="POST" >
+                {{ csrf_field() }}
+                <input id="google_token" type="hidden" name="google_token"  />
+            </form>
+
         </div>
+
+        <!-- <div class="container">
+
+        </div> -->
     </body>
+    <script>
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+      $('#msg').html('<h4>Hi, '+googleUser.getBasicProfile().getName()+"</h4><br/><h5>logging you in...</h5>");
+      $('#my-signin2').hide();
+      var id_token = googleUser.getAuthResponse().id_token;
+      $('#google_token').val(id_token);
+      $('#auth_form').submit();
+    }
+    function onFailure(error) {
+      console.log(error);
+      $('#msg').html('<h4>Sorry, '+error+"</h4><br/><h5>error in logging in</h5>");
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
+
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 </html>

@@ -4,6 +4,9 @@ body{
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
 }
+.bg-dark{
+    background-color: #263238;
+}
 .app-nav{
     height:70px;
 }
@@ -35,4 +38,30 @@ h3{
     padding: 6px!important;
     margin: 0px !important;
     font-size: 14px;
+}
+
+.flex-container {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.custom_row {
+    width: auto;
+}
+
+.flex-item {
+    padding: 5px;
+    margin: 10px;
+    line-height: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
 }

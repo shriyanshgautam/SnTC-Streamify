@@ -13,8 +13,10 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
+
+Route::post('login','LoginController@login');
 
 Route::resource('authors', 'AuthorController');
 
@@ -42,7 +44,7 @@ Route::resource('app_posts', 'AppPostController');
 
 Route::resource('contents', 'ContentController');
 
-Route::post('register','RegistrationController@register');
+Route::post('app/register','RegistrationController@register');
 
 Route::post('app/get_streams','AppController@get_streams');
 
