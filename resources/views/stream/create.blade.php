@@ -18,19 +18,19 @@
     {{ csrf_field() }}
     <div class="form-group">
         <label for="exampleInputEmail1">Title</label>
-        <input type="name" name="title" value="{{$stream->title or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title">
+        <input required type="name" name="title" value="{{$stream->title or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title">
         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
     </div>
 
     <div class="form-group">
         <label for="exampleInputEmail1">Subtitle</label>
-        <input type="name" name="subtitle" value="{{$stream->subtitle or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter subtitle">
+        <input required type="name" name="subtitle" value="{{$stream->subtitle or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter subtitle">
         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
     </div>
 
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Description</label>
-        <textarea name="description" value="" class="form-control" id="exampleFormControlTextarea1" rows="3">{{$stream->description or ''}}</textarea>
+        <textarea required name="description" value="" class="form-control" id="exampleFormControlTextarea1" rows="3">{{$stream->description or ''}}</textarea>
     </div>
 
     <div class="form-group">
@@ -56,7 +56,7 @@
      <div class="form-group">
          <label for="exampleFormControlSelect1">Select Bodies</label>
 
-         <select name="bodies[]" class="form-control" multiple id="exampleFormControlSelect1">
+         <select required name="bodies[]" class="form-control" multiple id="exampleFormControlSelect1">
              @foreach ($bodies as $body)
                 @if(isset($stream))
                     @foreach($stream->bodies as $streamBody)
@@ -74,7 +74,7 @@
       <div class="form-group">
           <label for="exampleFormControlSelect1">Select Position Holders</label>
 
-          <select name="position_holders[]" class="form-control" multiple id="exampleFormControlSelect1">
+          <select required name="position_holders[]" class="form-control" multiple id="exampleFormControlSelect1">
               @foreach ($position_holders as $position_holder)
                 @if(isset($stream))
                     @foreach($stream->positionHolders as $streamPositionHolder)

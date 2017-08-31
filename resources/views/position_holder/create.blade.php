@@ -12,31 +12,31 @@
     {{ csrf_field() }}
     <div class="form-group">
         <label for="exampleInputEmail1">Name</label>
-        <input type="name" name="name" value="{{$position_holder->name or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
+        <input required type="name" name="name" value="{{$position_holder->name or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
     </div>
 
     <div class="form-group">
         <label for="exampleInputEmail1">Position</label>
-        <input type="name" name="position" value="{{$position_holder->position or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter position">
+        <input required type="name" name="position" value="{{$position_holder->position or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter position">
         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
     </div>
 
     <div class="form-group">
         <label for="exampleInputEmail1">Level</label>
-        <input type="number" name="level" value="{{$position_holder->level or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter level">
+        <input required type="number" name="level" value="{{$position_holder->level or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter level">
         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
     </div>
 
     <div class="form-group">
         <label for="exampleInputEmail1">Email</label>
-        <input type="email" name="email" value="{{$position_holder->email or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <input required type="email" name="email" value="{{$position_holder->email or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
     </div>
 
     <div class="form-group">
         <label for="exampleInputEmail1">Contact</label>
-        <input type="number" name="contact" value="{{$position_holder->contact or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter contact">
+        <input required type="number" name="contact" value="{{$position_holder->contact or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter contact">
         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
     </div>
 

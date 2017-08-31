@@ -18,18 +18,18 @@
     {{ csrf_field() }}
     <div class="form-group">
         <label for="exampleInputEmail1">Title</label>
-        <input type="name" name="title" value="{{$content->title or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title">
+        <input required type="name" name="title" value="{{$content->title or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title">
         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
     </div>
     <div class="form-group">
         <label for="exampleInputEmail1">Text</label>
-        <input type="text" name="text" value="{{$content->text or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter text">
+        <input required type="text" name="text" value="{{$content->text or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter text">
         <small id="emailHelp"  class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
 
     <div class="form-group">
         <label for="exampleFormControlSelect1">Type</label>
-        <select name="type" class="form-control" id="exampleFormControlSelect1">
+        <select required name="type" class="form-control" id="exampleFormControlSelect1">
             @if(isset($content))
                 <option value="2" @if($content->type==2) selected @endif >Image</option>
             @else

@@ -14,13 +14,13 @@
         <div class="col-6">
             <div class="form-group">
                 <label for="exampleInputEmail1">Name</label>
-                <input type="name" name="name" id="name" value="{{$location->name or ''}}" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
+                <input required type="name" name="name" id="name" value="{{$location->name or ''}}" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
                 <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
             </div>
 
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Address</label>
-                <textarea name="address" value="" class="form-control" id="exampleFormControlTextarea1" required ows="3">{{$location->address or ''}}</textarea>
+                <textarea required name="address" value="" class="form-control" id="exampleFormControlTextarea1" required ows="3">{{$location->address or ''}}</textarea>
             </div>
 
             <div class="form-group">
@@ -29,16 +29,16 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Latitude</label>
-                <input type="number" name="latitude" step="any" id="latitude" required value="{{$location->latitude or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter latitude">
+                <input required type="number" name="latitude" step="any" id="latitude" required value="{{$location->latitude or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter latitude">
             </div>
 
             <div class="form-group">
                 <label for="exampleInputEmail1">Longitude</label>
-                <input type="number" name="longitude" step="any" id="longitude" required value="{{$location->longitude or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter longitude">
+                <input required type="number" name="longitude" step="any" id="longitude" required value="{{$location->longitude or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter longitude">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Zoom Level</label>
-                <input type="number" step="1" name="zoom" id="zoom" required value="{{$location->zoom or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter zoom">
+                <input required type="number" step="1" name="zoom" id="zoom" required value="{{$location->zoom or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter zoom">
             </div>
 
             <div class="form-group">

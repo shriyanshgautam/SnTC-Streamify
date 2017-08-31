@@ -12,17 +12,17 @@
     {{ csrf_field() }}
     <div class="form-group">
         <label for="exampleInputEmail1">Name</label>
-        <input type="name" name="name" value="{{$author->name or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
+        <input required type="name" name="name" value="{{$author->name or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
     </div>
     <div class="form-group">
         <label for="exampleInputEmail1">Email address</label>
-        <input type="email" name="email" value="{{$author->email or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <input required type="email" name="email" value="{{$author->email or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
         <small id="emailHelp"  class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
     <div class="form-group">
         <label for="exampleInputEmail1">Contact</label>
-        <input type="text" name="contact" value="{{$author->contact or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="contantHelp" placeholder="Enter contact">
+        <input required type="text" name="contact" value="{{$author->contact or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="contantHelp" placeholder="Enter contact">
         <small id="contactHelp"  class="form-text text-muted">We'll never share your contact with anyone else.</small>
     </div>
 
