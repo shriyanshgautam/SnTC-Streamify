@@ -27,13 +27,13 @@ class AppController extends Controller
             return response($error_response);
         }
 
-        $user_streams = $app_user->streams();
+        $user_streams = (AppUser::with('streams')->find($request->user_id)->toArray())["streams"];
         $streams = Stream::with(['author','positionHolders','bodies'])->get();
-        foreach($streams as $stream){
-            $stream['is_subscribed']=false;
-            foreach($user_streams as $user_stream){
-                if($user_stream->id==$stream->id){
-                    $stream['is_subscribed']=true;
+        for($i=0;$i<count($streams);$i++){
+            $streams[$i]['is_subscribed']=false;
+            for($j=0;$j<count($user_streams);$j++){
+                if($user_streams[$j]["id"]==$streams[$i]["id"]){
+                    $streams[$i]['is_subscribed']=true;
                 }
             }
         }

@@ -20,7 +20,7 @@ class StreamController extends Controller
      */
     public function index()
     {
-        $streams = Stream::orderBy('id','asc')->paginate(8);;
+        $streams = Stream::orderBy('id','desc')->paginate(8);;
         return view('stream.list',['streams'=>$streams]);
     }
 
