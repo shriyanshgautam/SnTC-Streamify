@@ -50,7 +50,7 @@ Route::post('app/get_events','AppController@get_events');
 
 Route::post('app/get_notifications','AppController@get_notifications');
 
-Route::post('subscribe','SubscribeController@subscribe');
+Route::post('app/subscribe','AppController@subscribe');
 
 
 

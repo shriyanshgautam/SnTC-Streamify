@@ -80,7 +80,7 @@ class EventController extends Controller
         $fcmData["event"]["is_user_attending"]=3;//FOR NEUTRAL
         //TODO
         $fcmData["event"]["attending_count"]=0;
-        $response = $this->sendFcmNotification($fcmData);
+        $response = $this->sendFcmNotification($fcmData,$this->getFcmTokenForSubscribedUsers($request->stream_id));
         $event->fcm_json_response = $response;
 
         $event->save();
@@ -110,10 +110,26 @@ class EventController extends Controller
      * @param  {type} $data description
      * @return {type}       description
      */
-    public function sendFcmNotification($data){
+    public function sendFcmNotification($data,$fcmTokens){
         $firebaseCloudMessaging = new FirebaseCloudMessaging();
-        return $firebaseCloudMessaging->sendNotification($data,"DEBUG");
+        return $firebaseCloudMessaging->sendNotification($data,$fcmTokens);
     }
+
+    /**
+     * getFcmTokenForSubscribedUsers - returns array to fcmtokens of subscribed users of a stream
+     *
+     * @param  {type} $streamId description
+     * @return {type} array of fcmTokens
+     */
+     public function getFcmTokenForSubscribedUsers($streamId){
+         $streams = Stream::with('appUsers')->find($streamId);
+         $app_users = ($streams->toArray())["app_users"];
+         $unique_ids = array();
+         for($counter = 0;$counter<count($app_users);$counter++){
+             $unique_ids[$counter] = $app_users[$counter]["unique_id"];
+         }
+         return $unique_ids;
+     }
 
     /**
      * Display the specified resource.

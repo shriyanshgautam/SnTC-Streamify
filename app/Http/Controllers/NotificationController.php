@@ -90,7 +90,7 @@ class NotificationController extends Controller
         $fcmData["notification"]["likes"]=0;
         $fcmData["notification"]["dislikes"]=0;
 
-        $response = $this->sendFcmNotification($fcmData);
+        $response = $this->sendFcmNotification($fcmData,$this->getFcmTokenForSubscribedUsers($request->stream_id));
         $notification->fcm_json_response = $response;
 
         $notification->save();
@@ -120,10 +120,26 @@ class NotificationController extends Controller
      * @param  {type} $data description
      * @return {type}       description
      */
-    public function sendFcmNotification($data){
+    public function sendFcmNotification($data,$fcmTokens){
         $firebaseCloudMessaging = new FirebaseCloudMessaging();
-        return $firebaseCloudMessaging->sendNotification($data,"DEBUG");
+        return $firebaseCloudMessaging->sendNotification($data,$fcmTokens);
     }
+
+    /**
+     * getFcmTokenForSubscribedUsers - returns array to fcmtokens of subscribed users of a stream
+     *
+     * @param  {type} $streamId description
+     * @return {type} array of fcmTokens
+     */
+     public function getFcmTokenForSubscribedUsers($streamId){
+         $streams = Stream::with('appUsers')->find($streamId);
+         $app_users = ($streams->toArray())["app_users"];
+         $unique_ids = array();
+         for($counter = 0;$counter<count($app_users);$counter++){
+             $unique_ids[$counter] = $app_users[$counter]["unique_id"];
+         }
+         return $unique_ids;
+     }
 
 
     /**
