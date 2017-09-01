@@ -34,9 +34,9 @@ class StreamController extends Controller
      */
     public function create()
     {
-        $authors = Author::all();
-        $bodies = Body::all();
-        $position_holders = PositionHolder::all();
+        $authors = Author::orderBy('id','desc')->get();
+        $bodies = Body::orderBy('id','desc')->get();
+        $position_holders = PositionHolder::orderBy('id','desc')->get();
         return view('stream.create',['authors'=>$authors,'bodies'=>$bodies,'position_holders'=>$position_holders]);
     }
 

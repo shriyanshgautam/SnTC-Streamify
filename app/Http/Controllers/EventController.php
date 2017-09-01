@@ -36,10 +36,10 @@ class EventController extends Controller
      */
     public function create()
     {
-        $authors = Author::all();
-        $locations = Location::all();
-        $streams = Stream::all();
-        $tags = Tag::all();
+        $authors = Author::orderBy('id','desc')->get();
+        $locations = Location::orderBy('id','desc')->get();
+        $streams = Stream::orderBy('id','desc')->get();
+        $tags = Tag::orderBy('id','desc')->get();
         return view('event.create',['authors'=>$authors,'locations'=>$locations,'streams'=>$streams,'tags'=>$tags]);
     }
 

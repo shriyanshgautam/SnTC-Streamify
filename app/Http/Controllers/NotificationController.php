@@ -38,9 +38,9 @@ class NotificationController extends Controller
      */
     public function create()
     {
-        $authors = Author::all();
-        $streams = Stream::all();
-        $tags = Tag::all();
+        $authors = Author::orderBy('id','desc')->get();
+        $streams = Stream::orderBy('id','desc')->get();
+        $tags = Tag::orderBy('id','desc')->get();
         $contents = Content::orderBy('id','desc')->get();
         return view('notification.create',['authors'=>$authors,'streams'=>$streams,'tags'=>$tags,'contents'=>$contents]);
 
