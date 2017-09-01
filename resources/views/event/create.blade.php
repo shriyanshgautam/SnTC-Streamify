@@ -40,7 +40,7 @@
 
     <div class="form-group">
         <label for="exampleInputEmail1">Time</label>
-        <input type="datetime-local" name="time" value="{{$event->time or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter time">
+        <input required type="datetime-local" name="time" value="{{$event->time or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter time">
         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
     </div>
 
