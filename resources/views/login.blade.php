@@ -46,12 +46,17 @@
                 <a class="navbar-brand flex-item" href="#"><img style="height:55px;margin" src="{{ URL::to('/') }}/images/ic_logo1.png"/></a>
                 <div id="my-signin2" class="flex-item"></div>
                 <div id="msg" class="flex-item">
-
+                    @if (session('status'))
+                        <div class="alert alert-{{session('status')}}" class="flex-item">
+                            <h4>{{ session('status_string') }}</h4>
+                        </div>
+                    @endif
                 </div>
             </div>
             <form id="auth_form" action="\login" method="POST" >
                 {{ csrf_field() }}
                 <input id="google_token" type="hidden" name="google_token"  />
+                <input id="user_email" type="hidden" name="user_email"  />
             </form>
 
         </div>
@@ -62,27 +67,54 @@
     </body>
     <script>
     function onSuccess(googleUser) {
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-      $('#msg').html('<h4>Hi, '+googleUser.getBasicProfile().getName()+"</h4><br/><h5>logging you in...</h5>");
-      $('#my-signin2').hide();
-      var id_token = googleUser.getAuthResponse().id_token;
-      $('#google_token').val(id_token);
-      $('#auth_form').submit();
+
+      @if (session('status'))
+         logout();
+         console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+         $('#msg').html('<h4>Hi, '+googleUser.getBasicProfile().getName()+"</h4><br/><h5>logging you in...</h5>");
+         $('#my-signin2').hide();
+         var id_token = googleUser.getAuthResponse().id_token;
+         $('#google_token').val(id_token);
+         $('#user_email').val(googleUser.getBasicProfile().getEmail());
+         $('#auth_form').submit();
+      @else
+          console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+          $('#msg').html('<h4>Hi, '+googleUser.getBasicProfile().getName()+"</h4><br/><h5>logging you in...</h5>");
+          $('#my-signin2').hide();
+          var id_token = googleUser.getAuthResponse().id_token;
+          $('#google_token').val(id_token);
+          $('#user_email').val(googleUser.getBasicProfile().getEmail());
+          $('#auth_form').submit();
+      @endif
+
     }
     function onFailure(error) {
       console.log(error);
       $('#msg').html('<h4>Sorry, '+error+"</h4><br/><h5>error in logging in</h5>");
     }
+
+    function logout(){
+        gapi.load('auth2', function() {
+          gapi.auth2.init();
+
+          var auth2 = gapi.auth2.getAuthInstance();
+          auth2.signOut().then(function () {
+            console.log('User signed out.');
+          });
+        });
+    }
+
     function renderButton() {
-      gapi.signin2.render('my-signin2', {
-        'scope': 'profile email',
-        'width': 240,
-        'height': 50,
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure
-      });
+          gapi.signin2.render('my-signin2', {
+            'scope': 'profile email',
+            'width': 240,
+            'height': 50,
+            'longtitle': true,
+            'theme': 'dark',
+            'onsuccess': onSuccess,
+            'onfailure': onFailure
+          });
+
     }
   </script>
 

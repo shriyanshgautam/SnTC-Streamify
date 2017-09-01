@@ -8,7 +8,6 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
         <!-- <script src="{{ URL::asset('js/bootstrap-tagsinput.min.js') }}"></script> -->
         <!-- Location PIcker -->
@@ -68,10 +67,12 @@
                 <a class="nav-link" href="/app_posts">Posts</a>
               </li>
             </ul>
-            <!-- <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="text" placeholder="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form> -->
+            <form id="logoutForm" action="/logout" method="POST">
+                {{ csrf_field() }}
+              <input type="hidden" name="name" value="0">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="signOut()">Logout</button>
+            </form>
+            
           </div>
         </nav>
 
@@ -83,4 +84,22 @@
             @yield('content')
         </div>
     </body>
+    <script>
+
+        function onLoad() {
+          gapi.load('auth2', function() {
+            gapi.auth2.init();
+          });
+        }
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+              console.log('User signed out.');
+              $('#logoutForm').submit();
+            });
+
+          }
+    </script>
+     <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 </html>

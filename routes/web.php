@@ -12,11 +12,11 @@
 */
 
 
-Route::get('/', function () {
-    return view('login');
-});
+Route::get('/','LoginController@login_form');
 
 Route::post('login','LoginController@login');
+
+Route::post('logout','LoginController@logout');
 
 Route::resource('authors', 'AuthorController');
 

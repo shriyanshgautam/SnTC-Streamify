@@ -16,7 +16,7 @@ class CheckGoogleAuth
     public function handle($request, Closure $next)
     {
         $value = session('login_id', 'none');
-        if($value!='gensec.sntc@itbhu.ac.in'){
+        if($value!='shriyanshgautam005@gmail.com'){
             return redirect('/');
         }
         return $next($request);
