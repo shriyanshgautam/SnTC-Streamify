@@ -61,9 +61,15 @@ class AppController extends Controller
             return response($error_response);
         }
 
+        $app_user = AppUser::find($request->user_id);
+        if($app_user==null){
+            $error_response['status']='Error : User not found.';
+            return response($error_response);
+        }
+
         $app_streams = (AppUser::with('streams.events')->find($request->user_id)->toArray())["streams"];
         if($app_streams==null){
-            $error_response['status']='Error : User not found.';
+            $error_response['status']='Error : User Streams not found.';
             return response($error_response);
         }
         $events_ids = array();
@@ -103,9 +109,15 @@ class AppController extends Controller
             return response($error_response);
         }
 
+        $app_user = AppUser::find($request->user_id);
+        if($app_user==null){
+            $error_response['status']='Error : User not found.';
+            return response($error_response);
+        }
+
         $app_streams = (AppUser::with('streams.notifications')->find($request->user_id)->toArray())["streams"];
         if($app_streams==null){
-            $error_response['status']='Error : User not found.';
+            $error_response['status']='Error : User Streams not found.';
             return response($error_response);
         }
         $notifications_ids = array();
