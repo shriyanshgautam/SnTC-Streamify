@@ -9,6 +9,7 @@ use App\Notification;
 use App\Feedback;
 use App\AppPost;
 use Carbon\Carbon;
+use App\Event;
 
 class AppController extends Controller
 {
@@ -55,19 +56,36 @@ class AppController extends Controller
             return response($error_response);
         }
 
-        $app_user = AppUser::find($request->user_id);
-        if($app_user==null){
-            $error_response['status']='Error : User not found.';
+        if(!$request->has('last_event_id')){
+            $error_response['status']='Error : last event id not received.';
             return response($error_response);
         }
 
-        $insertedNotification = Event::with(['author','stream','tag','contents'])->find(1);
-        $success_response['data']['notification'] = $insertedNotification;
+        $app_streams = (AppUser::with('streams.events')->find($request->user_id)->toArray())["streams"];
+        if($app_streams==null){
+            $error_response['status']='Error : User not found.';
+            return response($error_response);
+        }
+        $events_ids = array();
+        for($i=0;$i<count($app_streams);$i++){
+            $events = $app_streams[$i]["events"];
+            for($j=0;$j<count($events);$j++){
+                if($events[$j]["id"]>$request->last_event_id){
+                    array_push($events_ids,$events[$j]["id"]);
+                }
+            }
+        }
+
+        $insertedEvents = Event::with(['author','stream','tag','location'])->findMany($events_ids);
+
+        for($i=0;$i<count($insertedEvents);$i++){
+            $insertedEvents[$i]["is_user_attending"]=3;//FOR NEUTRAL
+            //TODO
+            $insertedEvents[$i]["attending_count"]=0;
+        }
+        $success_response['data']['events'] = $insertedEvents;
         $success_response['status']='OK';
-        $success_response['data']["notification"]["user_like_type"]=3;//FOR NEUTRAL
-        //TODO
-        $success_response['data']["notification"]["likes"]=0;
-        $success_response['data']["notification"]["dislikes"]=0;
+
         return response($success_response);
     }
 
