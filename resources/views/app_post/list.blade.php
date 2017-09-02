@@ -25,7 +25,7 @@
             <td>{{$app_post->appUser->name}}</td>
 
             <td>
-                <form method="post" action="/app_users/{{$app_user->id}}">
+                <form method="post" action="/app_posts/{{$app_post->id}}">
                     <input type="hidden" name="_method" value="DELETE">
                     <button type="submit" class="btn btn-danger">
                         {{ csrf_field() }}

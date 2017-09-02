@@ -58,6 +58,8 @@ Route::post('app/unsubscribe','AppController@unsubscribe');
 
 Route::post('app/feedback','AppController@feedback');
 
+Route::post('app/post','AppController@app_post');
+
 
 
 

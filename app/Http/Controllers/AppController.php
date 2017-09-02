@@ -7,6 +7,8 @@ use App\Stream;
 use App\AppUser;
 use App\Notification;
 use App\Feedback;
+use App\AppPost;
+use Carbon\Carbon;
 
 class AppController extends Controller
 {
@@ -190,7 +192,7 @@ class AppController extends Controller
         }
 
         if(!$request->has('text')){
-            $error_response['status']='Error : stream_id not received.';
+            $error_response['status']='Error : no feedback text received.';
             return response($error_response);
         }
 
@@ -199,6 +201,50 @@ class AppController extends Controller
         $feedback->stream_id = $request->stream_id;
         $feedback->text = $request->text;
         $feedback->save();
+
+        $success_response["status"]="OK";
+        return response($success_response);
+
+    }
+
+    public function app_post(Request $request){
+        $error_response['status_code'] = '0';
+        $success_response['status_code'] = '1';
+
+
+        if(!$request->has('user_id')){
+            $error_response['status']='Error : user_id not received.';
+            return response($error_response);
+        }
+
+        $app_user = AppUser::find($request->user_id);
+        if($app_user==null){
+            $error_response['status']='Error : User not found.';
+            return response($error_response);
+        }
+
+        if(!$request->has('title')){
+            $error_response['status']='Error : no post title received.';
+            return response($error_response);
+        }
+
+        if(!$request->has('type')){
+            $error_response['status']='Error : no post type received.';
+            return response($error_response);
+        }
+
+        if(!$request->has('content')){
+            $error_response['status']='Error : no post content received.';
+            return response($error_response);
+        }
+
+        $app_post = new AppPost();
+        $app_post->app_user_id = $request->user_id;
+        $app_post->title = $request->title;
+        $app_post->type = $request->type;
+        $app_post->content = $request->content;
+        $app_post->time = Carbon::now();
+        $app_post->save();
 
         $success_response["status"]="OK";
         return response($success_response);
