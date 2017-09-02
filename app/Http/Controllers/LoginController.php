@@ -28,6 +28,7 @@ class LoginController extends Controller
             return redirect('/')->with(['status'=>'error','status_string'=>'Error in logging in (02)!']);
         }
 
+
         if(in_array($request->user_email,$this->allowedLogin)){
             session(['login_id'=>$request->user_email]);
             return redirect('notifications');

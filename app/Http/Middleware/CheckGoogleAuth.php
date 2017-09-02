@@ -6,6 +6,11 @@ use Closure;
 
 class CheckGoogleAuth
 {
+    protected $allowedLogin;
+    public function __construct(){
+        $this->allowedLogin = array("shriyanshgautam005@gmail.com","gensec.sntc@itbhu.ac.in","gensec.sntc@iitbhu.ac.in");
+    }
+
     /**
      * Handle an incoming request.
      *
@@ -16,7 +21,7 @@ class CheckGoogleAuth
     public function handle($request, Closure $next)
     {
         $value = session('login_id', 'none');
-        if($value!='shriyanshgautam005@gmail.com'){
+        if(!in_array($value,$this->allowedLogin)){
             return redirect('/');
         }
         return $next($request);
