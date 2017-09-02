@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Stream;
 use App\AppUser;
 use App\Notification;
+use App\Feedback;
 
 class AppController extends Controller
 {
@@ -159,5 +160,48 @@ class AppController extends Controller
         $success_response['data']=AppUser::with('streams')->find($request->user_id);
 
         return response($success_response);
+    }
+
+    public function feedback(Request $request){
+        $error_response['status_code'] = '0';
+        $success_response['status_code'] = '1';
+
+
+        if(!$request->has('user_id')){
+            $error_response['status']='Error : user_id not received.';
+            return response($error_response);
+        }
+
+        $app_user = AppUser::find($request->user_id);
+        if($app_user==null){
+            $error_response['status']='Error : User not found.';
+            return response($error_response);
+        }
+
+        if(!$request->has('stream_id')){
+            $error_response['status']='Error : stream_id not received.';
+            return response($error_response);
+        }
+
+        $stream = Stream::find($request->stream_id);
+        if($stream==null){
+            $error_response['status']='Error : Stream not found.';
+            return response($error_response);
+        }
+
+        if(!$request->has('text')){
+            $error_response['status']='Error : stream_id not received.';
+            return response($error_response);
+        }
+
+        $feedback = new Feedback();
+        $feedback->app_user_id = $request->user_id;
+        $feedback->stream_id = $request->stream_id;
+        $feedback->text = $request->text;
+        $feedback->save();
+
+        $success_response["status"]="OK";
+        return response($success_response);
+
     }
 }

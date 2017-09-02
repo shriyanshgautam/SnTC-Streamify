@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}"/>
         <!-- Icons and Fonts -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     </head>
     <body>
         <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary app-nav">
@@ -72,7 +73,7 @@
               <input type="hidden" name="name" value="0">
               <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="signOut()">Logout</button>
             </form>
-            
+
           </div>
         </nav>
 

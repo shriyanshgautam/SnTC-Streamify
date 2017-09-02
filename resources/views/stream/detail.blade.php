@@ -71,7 +71,7 @@
     <div class="col-12 p-1">
         <b>Stream Feedbacks: </b>
         @foreach($stream->feedbacks as $feedback)
-            {{$feedback->text}} ({{$feedback->appUser->name}}),
+            <br/>{{$feedback->id}} : {{$feedback->text}} ({{$feedback->appUser->name}}),
         @endforeach
     </div>
 
