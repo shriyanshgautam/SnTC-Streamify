@@ -80,19 +80,37 @@ class AppController extends Controller
             return response($error_response);
         }
 
-        $app_user = AppUser::find($request->user_id);
-        if($app_user==null){
-            $error_response['status']='Error : User not found.';
+        if(!$request->has('last_notification_id')){
+            $error_response['status']='Error : last notification id not received.';
             return response($error_response);
         }
 
-        $insertedNotification = Notification::with(['author','stream','tag','contents'])->find(1);
-        $success_response['data']['notification'] = $insertedNotification;
+        $app_streams = (AppUser::with('streams.notifications')->find($request->user_id)->toArray())["streams"];
+        if($app_streams==null){
+            $error_response['status']='Error : User not found.';
+            return response($error_response);
+        }
+        $notifications_ids = array();
+        for($i=0;$i<count($app_streams);$i++){
+            $notifications = $app_streams[$i]["notifications"];
+            for($j=0;$j<count($notifications);$j++){
+                if($notifications[$j]["id"]>$request->last_notification_id){
+                    array_push($notifications_ids,$notifications[$j]["id"]);
+                }
+            }
+        }
+
+        $insertedNotification = Notification::with(['author','stream','tag','contents'])->findMany($notifications_ids);
+
+        for($i=0;$i<count($insertedNotification);$i++){
+            $insertedNotification[$i]["user_like_type"]=3;//FOR NEUTRAL
+            //TODO
+            $insertedNotification[$i]["likes"]=0;
+            $insertedNotification[$i]["dislikes"]=0;
+        }
+        $success_response['data']['notifications'] = $insertedNotification;
         $success_response['status']='OK';
-        $success_response['data']["notification"]["user_like_type"]=3;//FOR NEUTRAL
-        //TODO
-        $success_response['data']["notification"]["likes"]=0;
-        $success_response['data']["notification"]["dislikes"]=0;
+
         return response($success_response);
     }
 
