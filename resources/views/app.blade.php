@@ -67,6 +67,9 @@
               <li class="nav-item active">
                 <a class="nav-link" href="/app_posts">Posts</a>
               </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="/app_feedbacks">App Feedbacks</a>
+              </li>
             </ul>
             <form id="logoutForm" action="/logout" method="POST">
                 {{ csrf_field() }}

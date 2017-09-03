@@ -10,6 +10,7 @@ use App\Feedback;
 use App\AppPost;
 use Carbon\Carbon;
 use App\Event;
+use App\AppFeedback;
 
 class AppController extends Controller
 {
@@ -249,6 +250,37 @@ class AppController extends Controller
         $feedback->stream_id = $request->stream_id;
         $feedback->text = $request->text;
         $feedback->save();
+
+        $success_response["status"]="OK";
+        return response($success_response);
+
+    }
+
+    public function app_feedback(Request $request){
+        $error_response['status_code'] = '0';
+        $success_response['status_code'] = '1';
+
+
+        if(!$request->has('user_id')){
+            $error_response['status']='Error : user_id not received.';
+            return response($error_response);
+        }
+
+        $app_user = AppUser::find($request->user_id);
+        if($app_user==null){
+            $error_response['status']='Error : User not found.';
+            return response($error_response);
+        }
+
+        if(!$request->has('text')){
+            $error_response['status']='Error : no feedback text received.';
+            return response($error_response);
+        }
+
+        $app_feedback = new AppFeedback();
+        $app_feedback->app_user_id = $request->user_id;
+        $app_feedback->text = $request->text;
+        $app_feedback->save();
 
         $success_response["status"]="OK";
         return response($success_response);

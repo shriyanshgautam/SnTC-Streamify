@@ -36,4 +36,9 @@ class AppUser extends Model
     {
         return $this->hasMany('App\Feedback');
     }
+
+    public function appFeedbacks()
+    {
+        return $this->hasMany('App\AppFeedback');
+    }
 }

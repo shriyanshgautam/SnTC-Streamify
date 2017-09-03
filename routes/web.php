@@ -40,6 +40,8 @@ Route::resource('notifications', 'NotificationController');
 
 Route::resource('feedbacks', 'FeedbackController');
 
+Route::resource('app_feedbacks', 'AppFeedbackController');
+
 Route::resource('app_posts', 'AppPostController');
 
 Route::resource('contents', 'ContentController');
@@ -59,6 +61,8 @@ Route::post('app/unsubscribe','AppController@unsubscribe');
 Route::post('app/feedback','AppController@feedback');
 
 Route::post('app/post','AppController@app_post');
+
+Route::post('app/app_feedback','AppController@app_feedback');
 
 
 
