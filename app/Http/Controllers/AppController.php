@@ -33,7 +33,9 @@ class AppController extends Controller
         }
 
         $user_streams = (AppUser::with('streams')->find($request->user_id)->toArray())["streams"];
-        $streams = Stream::with(['author','positionHolders','bodies'])->get();
+        $streams = Stream::with(['author','positionHolders' => function ($q) {
+                    $q->orderBy('level', 'desc');
+                    },'bodies'])->get();
         for($i=0;$i<count($streams);$i++){
             $streams[$i]['is_subscribed']=false;
             for($j=0;$j<count($user_streams);$j++){
