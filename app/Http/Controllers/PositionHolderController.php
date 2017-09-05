@@ -42,6 +42,7 @@ class PositionHolderController extends Controller
      */
     public function store(Request $request)
     {
+
         $position_holder = new PositionHolder;
         $position_holder->name = $request->name;
         $position_holder->position = $request->position;
@@ -50,6 +51,10 @@ class PositionHolderController extends Controller
         $position_holder->contact = $request->contact;
 
         if ($request->hasFile('image')) {
+            $this->validate($request, [
+                'image' => 'size:50',
+            ]);
+
             $image = $request->file('image');
             $url = $this->getDropboxLink($image,"position_holder".$request->email.Carbon::now()->timestamp.".jpg","/PositionHolders/");
             $position_holder->image = $url;
@@ -103,6 +108,9 @@ class PositionHolderController extends Controller
         $position_holder->contact = $request->contact;
 
         if ($request->hasFile('image')) {
+            $this->validate($request, [
+                'image' => 'size:50',
+            ]);
             $image = $request->file('image');
             $url = $this->getDropboxLink($image,"position_holder".$request->email.Carbon::now()->timestamp.".jpg","/PositionHolders/");
             $position_holder->image = $url;

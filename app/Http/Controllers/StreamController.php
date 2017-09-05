@@ -48,6 +48,8 @@ class StreamController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $author = Author::find($request->author_id);
 
         $stream = new Stream;
@@ -56,6 +58,10 @@ class StreamController extends Controller
         $stream->description = $request->description;
 
         if ($request->hasFile('image')) {
+            $this->validate($request, [
+                'image' => 'size:50',
+            ]);
+
             $image = $request->file('image');
             $url = $this->getDropboxLink($image,"stream".Carbon::now()->timestamp.".jpg","/Streams/");
             $stream->image = $url;
@@ -122,6 +128,9 @@ class StreamController extends Controller
         $stream->description = $request->description;
 
         if ($request->hasFile('image')) {
+            $this->validate($request, [
+                'image' => 'size:50',
+            ]);
             $image = $request->file('image');
             $url = $this->getDropboxLink($image,"stream".Carbon::now()->timestamp.".jpg","/Streams/");
             $stream->image = $url;

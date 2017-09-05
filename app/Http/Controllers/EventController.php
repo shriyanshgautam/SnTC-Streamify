@@ -62,6 +62,9 @@ class EventController extends Controller
         $event->description = $request->description;
 
         if ($request->hasFile('image')) {
+            $this->validate($request, [
+                'image' => 'size:50',
+            ]);
             $image = $request->file('image');
             $url = $this->getDropboxLink($image,"event".Carbon::now()->timestamp.".jpg","/Events/");
             $event->image = $url;

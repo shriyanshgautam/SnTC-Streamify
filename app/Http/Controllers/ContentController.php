@@ -49,6 +49,9 @@ class ContentController extends Controller
         $content->type = $request->type;
 
         if ($request->hasFile('image')) {
+            $this->validate($request, [
+                'image' => 'size:50',
+            ]);
             $image = $request->file('image');
             $url = $this->getDropboxLink($image,"content".Carbon::now()->timestamp.".jpg","/Contents/");
             $content->image = $url;
@@ -102,6 +105,9 @@ class ContentController extends Controller
         $content->type = $request->type;
 
         if ($request->hasFile('image')) {
+            $this->validate($request, [
+                'image' => 'size:50',
+            ]);
             $image = $request->file('image');
             $url = $this->getDropboxLink($image,"content".Carbon::now()->timestamp.".jpg","/Contents/");
             $content->image = $url;

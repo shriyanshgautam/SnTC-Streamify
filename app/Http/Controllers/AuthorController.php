@@ -52,6 +52,9 @@ class AuthorController extends Controller
         $author->contact = $request->contact;
 
         if ($request->hasFile('image')) {
+            $this->validate($request, [
+                'image' => 'size:50',
+            ]);
             $image = $request->file('image');
             $url = $this->getDropboxLink($image,"author".$request->email.Carbon::now()->timestamp.".jpg","/Authors/");
             $author->image = $url;
@@ -102,6 +105,9 @@ class AuthorController extends Controller
         $author->contact = $request->contact;
 
         if ($request->hasFile('image')) {
+            $this->validate($request, [
+                'image' => 'size:50',
+            ]);
             $image = $request->file('image');
             $url = $this->getDropboxLink($image,"author".$request->email.Carbon::now()->timestamp.".jpg","/Authors/");
             $author->image = $url;

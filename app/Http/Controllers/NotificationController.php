@@ -66,6 +66,9 @@ class NotificationController extends Controller
         $notification->type = $request->type;
 
         if ($request->hasFile('image')) {
+            $this->validate($request, [
+                'image' => 'size:50',
+            ]);
             $image = $request->file('image');
             $url = $this->getDropboxLink($image,"notification".Carbon::now()->timestamp.".jpg","/Notifications/");
             $notification->image = $url;

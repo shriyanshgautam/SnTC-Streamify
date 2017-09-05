@@ -2,6 +2,12 @@
 
 @section('main-content')
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        {{ $errors->first() }}
+    </div>
+@endif
+
 @if (!isset($author))
     <form method="post" action="/authors" enctype="multipart/form-data">
 @else
