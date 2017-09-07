@@ -25,9 +25,9 @@
     </head>
     <body>
         <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
-          <!-- <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="#">
               <img style="height:30px;" src="{{ URL::to('/') }}/images/ic_logo1.png"/>
-          </a> -->
+          </a>
           <!-- <a class="navbar-brand" href="#">
             <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">
           </a> -->
