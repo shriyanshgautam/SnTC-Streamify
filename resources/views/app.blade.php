@@ -24,13 +24,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
     <body>
-        <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
+        <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary flex-row">
+
           <a class="navbar-brand" href="#">
               <img style="height:30px;" src="{{ URL::to('/') }}/images/ic_logo1.png"/>
           </a>
-          <!-- <a class="navbar-brand" href="#">
-            <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">
-          </a> -->
+
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -82,11 +81,6 @@
             </form>
           </div>
       </nav>
-
-        <!-- @section('sidebar')
-            This is the master sidebar.
-        @show -->
-
         <div class="container">
             @yield('content')
         </div>
