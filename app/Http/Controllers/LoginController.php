@@ -12,7 +12,7 @@ class LoginController extends Controller
     protected $allowedLogin;
     public function __construct(){
         $this->middleware('google_auth',['except' => ['login','login_form']]);
-        $this->allowedLogin = array("shriyanshgautam005@gmail.com","gensec.sntc@itbhu.ac.in","gensec.sntc@iitbhu.ac.in");
+        $this->allowedLogin = array("shriyanshgautam005@gmail.com","gensec.sntc@itbhu.ac.in","gensec.sntc@iitbhu.ac.in","kirtiojha253@gmail.com");
     }
 
     public function login_form(Request $request){

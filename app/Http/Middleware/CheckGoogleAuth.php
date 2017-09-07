@@ -8,7 +8,7 @@ class CheckGoogleAuth
 {
     protected $allowedLogin;
     public function __construct(){
-        $this->allowedLogin = array("shriyanshgautam005@gmail.com","gensec.sntc@itbhu.ac.in","gensec.sntc@iitbhu.ac.in");
+        $this->allowedLogin = array("shriyanshgautam005@gmail.com","gensec.sntc@itbhu.ac.in","gensec.sntc@iitbhu.ac.in","kirtiojha253@gmail.com");
     }
 
     /**
