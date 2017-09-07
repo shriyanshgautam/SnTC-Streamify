@@ -11,7 +11,7 @@
 
     {{ csrf_field() }}
     <div class="row">
-        <div class="col-6">
+        <div class="col-lg-6 col-md-12">
             <div class="form-group">
                 <label for="exampleInputEmail1">Name</label>
                 <input required type="name" name="name" id="name" value="{{$location->name or ''}}" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
@@ -46,9 +46,9 @@
                 <input type="number" step="1" name="radius" id="radius"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter zoom">
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-lg-6 col-md-12">
             <div class="form-group">
-                <div id="google_map_location_picker_widget" style="height: 600px;"></div>
+                <div id="google_map_location_picker_widget" style="height: 400px;"></div>
             </div>
         </div>
 
@@ -65,10 +65,10 @@
 
 
     <div class="row">
-        <div class="col-10">
+        <div class="col-lg-10">
 
         </div>
-        <div class="col-2">
+        <div class="col-lg-2 col-md-12">
 
             <button type="submit" class="btn btn-primary">
                 @if (!isset($location))

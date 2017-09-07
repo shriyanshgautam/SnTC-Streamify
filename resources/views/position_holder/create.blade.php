@@ -54,10 +54,10 @@
 
 
     <div class="row">
-        <div class="col-10">
+        <div class="col-lg-10">
 
         </div>
-        <div class="col-2">
+        <div class="col-lg-2 col-md-12">
 
             <button type="submit" class="btn btn-primary">
                 @if (!isset($position_holder))
