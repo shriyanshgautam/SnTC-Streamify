@@ -24,7 +24,7 @@
     <div class="form-group">
         <label for="exampleInputEmail1">Text</label>
         <input required type="text" name="text" value="{{$content->text or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter text">
-        <small id="emailHelp"  class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <!-- <small id="emailHelp"  class="form-text text-muted">We'll never share your email with anyone else.</small> -->
     </div>
 
     <div class="form-group">
@@ -47,7 +47,7 @@
      <div class="form-group">
          <label for="exampleInputFile">Image</label>
          <input type="file" name="image" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-         <small id="fileHelp" class="form-text text-muted">Must be square.</small>
+         <small id="fileHelp" class="form-text text-muted">Size should be less than 50 Kb</small>
      </div>
 
      <div class="form-group">
@@ -58,7 +58,7 @@
 
      <div class="form-group">
          <label for="exampleFormControlTextarea1">Url</label>
-         <textarea name="url" value="" class="form-control" id="exampleFormControlTextarea1" rows="3">{{$content->url or ''}}</textarea>
+         <input readonly name="url" value="{{$content->url or ''}}" class="form-control" id="exampleFormControlTextarea1">
      </div>
 
 

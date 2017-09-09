@@ -21,7 +21,7 @@
                     <td>{{$feedback->stream->title}}</td>
                     <td>{{$feedback->text}}</td>
                     <td>{{$feedback->appUser->name}}</td>
-                    <td>{{Carbon\Carbon::parse($app_feedback->created_at)->diffForHumans()}}</td>
+                    <td>{{Carbon\Carbon::parse($feedback->created_at)->diffForHumans()}}</td>
 
                     <td>
                         <form method="post" action="/feedbacks/{{$feedback->id}}">
