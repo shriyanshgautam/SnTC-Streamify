@@ -58,19 +58,19 @@
                 <option value="3">Video</option>
             @endif
         </select>
+        <small id="emailHelp" class="form-text text-muted">The content you will select at the bottom should match the type i.e. Videos or Images and not a combination of both</small>
      </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
         <label for="exampleInputFile">Image</label>
         <input type="file" name="image" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
         <small id="fileHelp" class="form-text text-muted">Must be square.</small>
-    </div>
-
-    <div class="form-group">
+    </div> -->
+    <input type="hidden" name="time" value="{{$notification->time or ''}}"/>
+    <!-- <div class="form-group">
         <label for="exampleInputEmail1">Time</label>
-        <input type="datetime-local" name="time" value="{{$notification->time or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter time">
-        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-    </div>
+        <input readonly type="datetime-local" name="time" value="{{$notification->time or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter time">
+    </div> -->
 
     <div class="form-group">
         <label for="exampleFormControlSelect1">Select Author</label>
