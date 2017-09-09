@@ -116,7 +116,7 @@
             <select name="content_ids[]" class="form-control js-example-basic-multiple multi-select" multiple id="exampleFormControlSelect1">
                 @foreach ($contents as $content)
                      @if(isset($notification))
-                         <option value="{{$content->id}}" @if($content->id == $notification->contents->id) selected @endif >{{$content->name}}</option>
+                         <option value="{{$content->id}}" @if($content->id == $notification->contents->id) selected @endif >{{$content->name}}(@if($content->type==2) Image @else Video @endif)</option>
                      @else
                          <option value="{{$content->id}}" >{{$content->title}}</option>
                      @endif
