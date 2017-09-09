@@ -3,7 +3,7 @@
 @section('main-content')
 <div class="row">
     <div class="col-8">
-        <h3 class="p-1">{{$stream->title}}</h3>
+        <h3 class="p-1">#{{$stream->id}} {{$stream->title}}</h3>
     </div>
     <div class="row col-4">
         <form action="/streams/{{$stream->id}}/edit/" method="get">
@@ -24,16 +24,13 @@
 
 <div class="row p-3">
 
-    <div class="col-12 p-1">
-        <b>Stream Id: </b>{{$stream->id}}
-    </div>
     <div class="col-6 p-1">
         <b>Stream Title: </b>{{$stream->title}}
     </div>
     <div class="col-6 p-1">
         <b>Stream Subtitle: </b>{{$stream->subtitle}}
     </div>
-    <div class="col-6 p-1">
+    <div class="col-12 p-1">
         <b>Stream Description: </b>{{$stream->description}}
     </div>
     <div class="col-6 p-1">

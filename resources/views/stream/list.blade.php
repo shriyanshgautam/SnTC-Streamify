@@ -10,7 +10,7 @@
               <th>#</th>
               <th>Title</th>
               <th>Subtitle</th>
-              <th>Description</th>
+
               <th>Author</th>
               <th>Subscribers</th>
             </tr>
@@ -21,7 +21,7 @@
                     <th scope="row">{{$stream->id}}</th>
                     <td>{{$stream->title}}</td>
                     <td>{{$stream->subtitle}}</td>
-                    <td>{{$stream->description}}</td>
+                    
                     <td>{{$stream->author->name}}</td>
                     <td>{{$stream->appUsers->count()}}</td>
                     <!-- Accessing foriegn key table values -->
