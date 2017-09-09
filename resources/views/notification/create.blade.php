@@ -37,29 +37,7 @@
         <textarea name="link" value="" class="form-control" id="exampleFormControlTextarea1" rows="3">{{$notification->link or ''}}</textarea>
     </div>
 
-    <div class="form-group">
-        <label for="exampleFormControlSelect1">Type</label>
-        <select required name="type" class="form-control" id="exampleFormControlSelect1">
-            @if(isset($notification))
-                <option value="1" @if($notification->type==1) selected @endif >Text</option>
-            @else
-                <option value="1">Text</option>
-            @endif
 
-            @if(isset($notification))
-                <option value="2" @if($notification->type==2) selected @endif >Image</option>
-            @else
-                <option value="2">Image</option>
-            @endif
-
-            @if(isset($notification))
-                <option value="3" @if($notification->type==3) selected @endif >Video</option>
-            @else
-                <option value="3">Video</option>
-            @endif
-        </select>
-        <small id="emailHelp" class="form-text text-muted">The content you will select at the bottom should match the type i.e. Videos or Images and not a combination of both</small>
-     </div>
 
     <!-- <div class="form-group">
         <label for="exampleInputFile">Image</label>
@@ -112,13 +90,39 @@
         </div>
 
         <div class="form-group">
-            <label for="exampleFormControlSelect1">Select Content</label>
+            <label for="exampleFormControlSelect1">Type</label>
+            <select required name="type" class="form-control" id="exampleFormControlSelect1">
+                @if(isset($notification))
+                    <option value="1" @if($notification->type==1) selected @endif >Text</option>
+                @else
+                    <option value="1">Text</option>
+                @endif
+
+                @if(isset($notification))
+                    <option value="2" @if($notification->type==2) selected @endif >Image</option>
+                @else
+                    <option value="2">Image</option>
+                @endif
+
+                @if(isset($notification))
+                    <option value="3" @if($notification->type==3) selected @endif >Video</option>
+                @else
+                    <option value="3">Video</option>
+                @endif
+            </select>
+            <small id="emailHelp" class="form-text text-muted">The content you will select at the bottom should match the type i.e. Videos or Images and not a combination of both</small>
+         </div>
+
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Select Contents</label>
             <select name="content_ids[]" class="form-control js-example-basic-multiple multi-select" multiple id="exampleFormControlSelect1">
                 @foreach ($contents as $content)
                      @if(isset($notification))
-                         <option value="{{$content->id}}" @if($content->id == $notification->contents->id) selected @endif >{{$content->name}}(@if($content->type==2) Image @else Video @endif)</option>
+                         @foreach($notification->contents as $notificationContent)
+                         <option value="{{$content->id}}" @if($content->id == $notificationContent->id) selected @endif >{{$content->name}}</option>
+                         @endforeach
                      @else
-                         <option value="{{$content->id}}" >{{$content->title}}</option>
+                         <option value="{{$content->id}}" >{{$content->title}} (@if($content->type==2) Image @else Video @endif)</option>
                      @endif
                 @endforeach
             </select>
