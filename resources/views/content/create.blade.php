@@ -53,7 +53,7 @@
      <div class="form-group">
          <label for="exampleInputEmail1">Youtube Video Id</label>
          <input type="name" name="video_id" value="{{$content->video_id or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Video Id">
-         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+         <small id="emailHelp" class="form-text text-muted">Do not put any other parameters. Just the id ie. after '=' and before any '&'</small>
      </div>
 
      <div class="form-group">

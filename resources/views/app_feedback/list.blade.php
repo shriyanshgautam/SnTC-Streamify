@@ -10,6 +10,8 @@
               <th>#</th>
               <th>Text</th>
               <th>User</th>
+              <th>At</th>
+
             </tr>
           </thead>
           <tbody>
@@ -18,6 +20,7 @@
                     <th scope="row">{{$app_feedback->id}}</th>
                     <td>{{$app_feedback->text}}</td>
                     <td>{{$app_feedback->appUser->name}}</td>
+                    <td>{{Carbon\Carbon::parse($app_feedback->created_at)->diffForHumans()}}</td>
 
                     <td>
                         <form method="post" action="/app_feedbacks/{{$app_feedback->id}}">
