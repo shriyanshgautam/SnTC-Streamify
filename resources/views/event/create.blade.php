@@ -35,7 +35,7 @@
     <div class="form-group">
         <label for="exampleInputFile">Image</label>
         <input type="file" name="image" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-        <small id="fileHelp" class="form-text text-muted">Must be square.</small>
+        <small id="fileHelp" class="form-text text-muted">Should not be greater than 50 Kb in size.</small>
     </div>
 
     <div class="form-group">

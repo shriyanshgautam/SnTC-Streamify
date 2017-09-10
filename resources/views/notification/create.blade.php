@@ -126,6 +126,7 @@
                      @endif
                 @endforeach
             </select>
+            <small id="emailHelp" style="color:#ff0000 !important;" class="form-text text-muted">Please select the type of content only that you have selected above. Only one video is allowed per notification. There is no limit to number of images per notification.</small>
          </div>
 
     <div class="row">

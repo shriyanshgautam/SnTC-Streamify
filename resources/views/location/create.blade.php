@@ -39,6 +39,7 @@
             <div class="form-group">
                 <label for="exampleInputEmail1">Zoom Level</label>
                 <input required type="number" step="1" name="zoom" id="zoom" required value="{{$location->zoom or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter zoom">
+                <small id="emailHelp" class="form-text text-muted">This zoom level will be used in the app while showing the map</small>
             </div>
 
             <div class="form-group">

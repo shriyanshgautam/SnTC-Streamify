@@ -12,13 +12,13 @@
     {{ csrf_field() }}
     <div class="form-group">
         <label for="exampleInputEmail1">Name</label>
-        <input required type="name" name="name" value="{{$body->name or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
-        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+        <input required type="name" name="name" value="{{$body->name or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Body Name">
+        <small id="emailHelp" class="form-text text-muted">Can be a parent body like SnTC for COPS.</small>
     </div>
     <div class="form-group">
         <label for="exampleInputEmail1">Level</label>
-        <input required type="number" step="1" name="level" value="{{$body->level or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter level">
-        <small id="emailHelp"  class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <input required type="number" step="1" name="level" value="{{$body->level or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Body level">
+        <small id="emailHelp"  class="form-text text-muted">This level will be used to order the bodies</small>
     </div>
 
     <div class="row">

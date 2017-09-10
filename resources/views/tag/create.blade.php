@@ -19,6 +19,7 @@
     <div class="form-group">
         <label for="exampleInputEmail1">Level</label>
         <input required type="number" step="1" name="level" value="{{$tag->level or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter level">
+        <small id="emailHelp" class="form-text text-muted">This will be used to order the tags in a notification or event.</small>
     </div>
 
     <div class="row">

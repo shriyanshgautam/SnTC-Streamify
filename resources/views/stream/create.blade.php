@@ -56,7 +56,7 @@
      <div class="form-group">
          <label for="exampleFormControlSelect1">Select Bodies</label>
 
-         <select required name="bodies[]" class="form-control" multiple id="exampleFormControlSelect1">
+         <select required name="bodies[]" class="form-control js-example-basic-multiple multi-select" multiple id="exampleFormControlSelect1">
              @foreach ($bodies as $body)
                 @if(isset($stream))
                     @foreach($stream->bodies as $streamBody)
@@ -71,22 +71,22 @@
       </div>
 
 
-      <div class="form-group">
-          <label for="exampleFormControlSelect1">Select Position Holders</label>
 
-          <select required name="position_holders[]" class="form-control" multiple id="exampleFormControlSelect1">
-              @foreach ($position_holders as $position_holder)
-                @if(isset($stream))
-                    @foreach($stream->positionHolders as $streamPositionHolder)
-                      <option value="{{$position_holder->id}}" @if($position_holder->id == $streamPositionHolder->id) selected @endif >{{$position_holder->name}} ({{$position_holder->position}})</option>
-                    @endforeach
-                @else
-                    <option value="{{$position_holder->id}}">{{$position_holder->name}} ({{$position_holder->position}})</option>
-                @endif
-              @endforeach
-          </select>
 
-       </div>
+       <div class="form-group">
+           <label for="exampleFormControlSelect1">Select Position Holders</label>
+           <select required name="position_holders[]" class="form-control js-example-basic-multiple multi-select" multiple id="exampleFormControlSelect1">
+               @foreach ($position_holders as $position_holder)
+                    @if(isset($stream))
+                        @foreach($stream->positionHolders as $streamPositionHolder)
+                        <option value="{{$position_holder->id}}" @if($position_holder->id == $streamPositionHolder->id) selected @endif >{{$position_holder->name}} ({{$position_holder->position}})</option>
+                        @endforeach
+                    @else
+                        <option value="{{$position_holder->id}}" >{{$position_holder->name}} ({{$position_holder->position}})</option>
+                    @endif
+               @endforeach
+           </select>
+        </div>
 
 
 
@@ -111,4 +111,10 @@
     </div>
 
 </form>
+<script>
+
+  $('.multi-select').select2();
+
+
+</script>
 @endsection
