@@ -17,7 +17,7 @@
     {{ csrf_field() }}
     <div class="form-group">
         <label for="exampleInputEmail1">Title</label>
-        <input required type="name" name="title" value="{{$notification->title or ''}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title">
+        <input required type="name" name="title" value="{{$notification->title or ''}}" class="form-control" id="not_title" aria-describedby="emailHelp" placeholder="Enter title">
         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
     </div>
 
@@ -113,7 +113,7 @@
             <small id="emailHelp" class="form-text text-muted">The content you will select at the bottom should match the type i.e. Videos or Images and not a combination of both</small>
          </div>
 
-        <div class="form-group">
+        <div class="form-group col-12">
             <label for="exampleFormControlSelect1">Select Contents</label>
             <select name="content_ids[]" class="form-control js-example-basic-multiple multi-select" multiple id="exampleFormControlSelect1">
                 @foreach ($contents as $content)
