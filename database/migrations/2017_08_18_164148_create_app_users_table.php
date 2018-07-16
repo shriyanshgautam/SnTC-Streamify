@@ -15,13 +15,15 @@ class CreateAppUsersTable extends Migration
     {
         Schema::create('app_users', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('unique_id');
+            $table->text('fcmToken');
             $table->string('name');
             $table->string('email');
+            $table->integer('rollNo')->unsigned()->unique();
+            $table->integer('year')->unsigned();
             $table->string('contact');
-            $table->integer('year');
             $table->string('branch');
             $table->timestamps();
+
             // TODO add college fk
         });
     }
