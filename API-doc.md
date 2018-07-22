@@ -236,3 +236,64 @@
  }
  
  ```
+ 
+ ## Create a Team
+ + URL: http://sntc.online/app/create_team
+ + Method Type: POST
+ + Request:
+ ```json
+ {
+   "rollNo":16123004,
+   "team_name":"Knight Riders",
+   "event_id":1
+ }
+ ```
+ + Respnse:
+ ```json
+ {
+   "status":16123004,
+   "team_id":1
+ }
+ ```
+ 
+ 
+ ## Add members to a team(keep teamId private to the creator)
+ + URL: http://sntc.online/app/add_members
+ + Method Type: POST
+ + Request:
+ ```json
+ {
+   "rollNo":15073012,
+   "team_id":1
+ }
+ ```
+ + Respnse:
+ ```json
+ {
+   "status":"OK"
+ }
+ ```
+ 
+ 
+ ## Get all teams a user belongs to
+ + URL: http://sntc.online/app/get_my_teams
+ + Method Type: POST
+ + Request:
+ ```json
+ {
+   "rollNo":16123004
+ }
+ ```
+ + Respnse:
+ ```json
+[
+  {
+    "team_id": 1,
+    "team_name": "Dummies"
+  },
+  {
+    "team_id": 2,
+    "team_name": "Knight Riders"
+  }
+]
+ ```
