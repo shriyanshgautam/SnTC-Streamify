@@ -251,7 +251,7 @@
  + Respnse:
  ```json
  {
-   "status":16123004,
+   "status":"OK",
    "team_id":1
  }
  ```
