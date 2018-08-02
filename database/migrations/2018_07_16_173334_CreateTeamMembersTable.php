@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStreamSubscribersTable extends Migration
+class CreateTeamMembersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateStreamSubscribersTable extends Migration
      */
     public function up()
     {
-        Schema::create('app_user_stream', function (Blueprint $table) {
+        Schema::create('team_members', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('app_user_id')->unsigned();
-            $table->integer('stream_id')->unsigned();
+            $table->string('rollNo')->unsigned();
+            $table->string('team_id');
+            $table->boolean('is_creator');
             $table->timestamps();
-
-            $table->foreign('app_user_id')->references('id')->on('app_users');
-            $table->foreign('stream_id')->references('id')->on('streams');
         });
     }
 
@@ -31,6 +29,6 @@ class CreateStreamSubscribersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('app_user_stream');
+        Schema::drop('team_members');
     }
 }

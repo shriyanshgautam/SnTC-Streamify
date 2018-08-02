@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAppUsersTable extends Migration
+class CreateTeamTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,11 @@ class CreateAppUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('app_users', function (Blueprint $table) {
+        Schema::create('teams', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('fcmToken');
             $table->string('name');
-            $table->string('email');
-            $table->integer('rollNo')->unsigned()->unique();
-            $table->integer('year')->unsigned();
-            $table->string('contact');
-            $table->string('branch');
+            $table->string('event_id');
             $table->timestamps();
-
-            // TODO add college fk
         });
     }
 
@@ -35,6 +28,6 @@ class CreateAppUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('app_users');
+        Schema::drop('teams');
     }
 }

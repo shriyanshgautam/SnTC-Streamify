@@ -140,11 +140,11 @@ class NotificationController extends Controller
      public function getFcmTokenForSubscribedUsers($streamId){
          $streams = Stream::with('appUsers')->find($streamId);
          $app_users = ($streams->toArray())["app_users"];
-         $unique_ids = array();
+         $fcmTokens = array();
          for($counter = 0;$counter<count($app_users);$counter++){
-             $unique_ids[$counter] = $app_users[$counter]["unique_id"];
+             $fcmTokens[$counter] = $app_users[$counter]["fcmToken"];
          }
-         return $unique_ids;
+         return $fcmTokens;
      }
 
 
