@@ -15,8 +15,8 @@ class CreateTeamMembersTable extends Migration
     {
         Schema::create('team_members', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('rollNo')->unsigned();
-            $table->string('team_id');
+            $table->integer('rollNo')->unsigned();
+            $table->integer('team_id');
             $table->boolean('is_creator');
             $table->timestamps();
         });

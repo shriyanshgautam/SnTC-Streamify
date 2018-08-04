@@ -130,11 +130,11 @@ class EventController extends Controller
      public function getFcmTokenForSubscribedUsers($streamId){
          $streams = Stream::with('appUsers')->find($streamId);
          $app_users = ($streams->toArray())["app_users"];
-         $fcmTokens = array();
+         $unique_ids = array();
          for($counter = 0;$counter<count($app_users);$counter++){
-             $fcmTokens[$counter] = $app_users[$counter]["fcmToken"];
+             $unique_ids[$counter] = $app_users[$counter]["unique_id"];
          }
-         return $fcmTokens;
+         return $unique_ids;
      }
 
     /**

@@ -26,14 +26,13 @@ class AppController extends Controller
             return response($error_response);
         }
 
-        $id = AppUser::where('rollNo','=',$request->rollNo)->value('id');
-        $app_user = AppUser::find($id);
+        $app_user = AppUser::where('rollNo',$request->rollNo)->first();
         if($app_user==null){
             $error_response['status']='Error : User not found.';
             return response($error_response);
         }
 
-        $user_streams = (AppUser::with('streams')->find($id)->toArray())["streams"];
+        $user_streams = (AppUser::with('streams')->find($app_user->id)->toArray())["streams"];
         $streams = Stream::with(['author','positionHolders' => function ($q) {
                     $q->orderBy('level', 'asc');
                     },'bodies'])->get();
@@ -65,14 +64,13 @@ class AppController extends Controller
             return response($error_response);
         }
 
-        $id = AppUser::where('rollNo','=',$request->rollNo)->value('id');
-        $app_user = AppUser::find($id);
+        $app_user = AppUser::where('rollNo',$request->rollNo)->first();
         if($app_user==null){
             $error_response['status']='Error : User not found.';
             return response($error_response);
         }
 
-        $app_streams = (AppUser::with('streams.events')->find($id)->toArray())["streams"];
+        $app_streams = (AppUser::with('streams.events')->find($app_user->id)->toArray())["streams"];
         if($app_streams==null){
             $error_response['status']='Error : User Streams not found.';
             return response($error_response);
@@ -114,14 +112,13 @@ class AppController extends Controller
             return response($error_response);
         }
 
-        $id = AppUser::where('rollNo','=',$request->rollNo)->value('id');
-        $app_user = AppUser::find($id);
+        $app_user = AppUser::where('rollNo',$request->rollNo)->first();
         if($app_user==null){
             $error_response['status']='Error : User not found.';
             return response($error_response);
         }
 
-        $app_streams = (AppUser::with('streams.notifications')->find($id)->toArray())["streams"];
+        $app_streams = (AppUser::with('streams.notifications')->find($app_user->id)->toArray())["streams"];
         if($app_streams==null){
             $error_response['status']='Error : User Streams not found.';
             return response($error_response);
@@ -164,8 +161,7 @@ class AppController extends Controller
             return response($error_response);
         }
 
-        $id = AppUser::where('rollNo','=',$request->rollNo)->value('id');
-        $app_user = AppUser::find($id);
+        $app_user = AppUser::where('rollNo',$request->rollNo)->first();
         if($app_user==null){
             $error_response['status']='Error : User not found.';
             return response($error_response);
@@ -180,7 +176,7 @@ class AppController extends Controller
         // resulting in redundancy of record
         $app_user->streams()->syncWithoutDetaching([$request->stream_id]);
         $success_response['status']='OK';
-        $success_response['data']=AppUser::with('streams')->find($request->rollNo);
+        $success_response['data']=AppUser::with('streams')->find($app_user->id);
 
         return response($success_response);
     }
@@ -199,8 +195,7 @@ class AppController extends Controller
             return response($error_response);
         }
 
-        $id = AppUser::where('rollNo','=',$request->rollNo)->value('id');
-        $app_user = AppUser::find($id);
+        $app_user = AppUser::where('rollNo',$request->rollNo)->first();
         if($app_user==null){
             $error_response['status']='Error : User not found.';
             return response($error_response);
@@ -215,7 +210,7 @@ class AppController extends Controller
         // resulting in redundancy of record
         $app_user->streams()->detach($request->stream_id);
         $success_response['status']='OK';
-        $success_response['data']=AppUser::with('streams')->find($id);
+        $success_response['data']=AppUser::with('streams')->find($app_user->id);
 
         return response($success_response);
     }
@@ -230,8 +225,7 @@ class AppController extends Controller
             return response($error_response);
         }
 
-        $id = AppUser::where('rollNo','=',$request->rollNo)->value('id');
-        $app_user = AppUser::find($id);
+        $app_user = AppUser::where('rollNo',$request->rollNo)->first();
         if($app_user==null){
             $error_response['status']='Error : User not found.';
             return response($error_response);
@@ -254,7 +248,7 @@ class AppController extends Controller
         }
 
         $feedback = new Feedback();
-        $feedback->app_user_id = $id;
+        $feedback->app_user_id = $app_user->id;
         $feedback->stream_id = $request->stream_id;
         $feedback->text = $request->text;
         $feedback->save();
@@ -274,8 +268,7 @@ class AppController extends Controller
             return response($error_response);
         }
 
-        $id = AppUser::where('rollNo','=',$request->rollNo)->value('id');
-        $app_user = AppUser::find($id);
+        $app_user = AppUser::where('rollNo',$request->rollNo)->first();
         if($app_user==null){
             $error_response['status']='Error : User not found.';
             return response($error_response);
@@ -287,7 +280,7 @@ class AppController extends Controller
         }
 
         $app_feedback = new AppFeedback();
-        $app_feedback->app_user_id = $id;
+        $app_feedback->app_user_id = $app_user->id;
         $app_feedback->text = $request->text;
         $app_feedback->save();
 
@@ -306,8 +299,7 @@ class AppController extends Controller
             return response($error_response);
         }
 
-        $id = AppUser::where('rollNo','=',$request->rollNo)->value('id');
-        $app_user = AppUser::find($id);
+        $app_user = AppUser::where('rollNo',$request->rollNo)->first();
         if($app_user==null){
             $error_response['status']='Error : User not found.';
             return response($error_response);
@@ -323,16 +315,16 @@ class AppController extends Controller
             return response($error_response);
         }
 
-        if(!$request->has('post_content')){
+        if(!$request->has('content')){
             $error_response['status']='Error : no post content received.';
             return response($error_response);
         }
 
         $app_post = new AppPost();
-        $app_post->app_user_id = $id;
+        $app_post->app_user_id = $app_user->id;
         $app_post->title = $request->title;
         $app_post->type = $request->type;
-        $app_post->content = $request->post_content;
+        $app_post->content = $request->content;
         $app_post->time = Carbon::now();
         $app_post->save();
 

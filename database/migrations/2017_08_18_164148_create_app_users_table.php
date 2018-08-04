@@ -15,7 +15,7 @@ class CreateAppUsersTable extends Migration
     {
         Schema::create('app_users', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('fcmToken');
+            $table->text('unique_id');
             $table->string('name');
             $table->string('email');
             $table->integer('rollNo')->unsigned()->unique();
