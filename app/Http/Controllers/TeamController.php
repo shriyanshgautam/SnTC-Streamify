@@ -29,8 +29,7 @@ class TeamController extends Controller
             return response($error_response);
         }
 
-        $id = AppUser::where('rollNo','=',$request->rollNo)->value('id');
-        $app_user = AppUser::find($id);
+        $app_user = AppUser::where('rollNo',$request->rollNo)->first();
         if($app_user==null){
             $error_response['status']='Error : User not found.';
             return response($error_response);
@@ -40,10 +39,14 @@ class TeamController extends Controller
         $team->event_id = $request->event_id;
         $team->name = $request->team_name;
 
+        $team->save();
+
         $team_member = new TeamMember();
         $team_member->rollNo = $request->rollNo;
         $team_member->team_id = $team->id;
         $team_member->is_creator = true;
+
+        $team_member->save(); // save it
 
         return response()->json([
             "status" => "OK",
@@ -65,8 +68,7 @@ class TeamController extends Controller
             return response($error_response);
         }
 
-        $id = AppUser::where('rollNo','=',$request->rollNo)->value('id');
-        $app_user = AppUser::find($id);
+        $appUser = AppUser::where('rollNo',$request->rollNo)->first();
         if($app_user==null){
             $error_response['status']='Error : User not found.';
             return response($error_response);
@@ -83,6 +85,8 @@ class TeamController extends Controller
         $team_member->team_id = $team->id;
         $team_member->is_creator = false;
 
+        $team_member->save(); // save it
+
         return response()->json([
             "status" => "OK"
         ]);
@@ -97,19 +101,18 @@ class TeamController extends Controller
             return response($error_response);
         }
 
-        $id = AppUser::where('rollNo','=',$request->rollNo)->value('id');
-        $app_user = AppUser::find($id);
+        $app_user = AppUser::where('rollNo',$request->rollNo)->first();
         if($app_user==null){
             $error_response['status']='Error : User not found.';
             return response($error_response);
         }
 
-        $results = TeamMember::where('rollNo','=',$request->rollNo);
+        $results = TeamMember::where('rollNo','=',$request->rollNo)->get();
         if($results==null){
             $error_response['status']='Error : No results found.';
             return response($error_response);
         }
 
-        return response($results->get());
+        return response($results);
     }
 }

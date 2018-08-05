@@ -40,6 +40,7 @@ class RegistrationController extends Controller{
         return response()->json([
             "status"=>"OK",
             "data"=>[
+            'id'=> $appUser->id,
             'name' => $appUser->name,
             'email' => $appUser->email,
             'contact'=>$appUser->contact,
