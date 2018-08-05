@@ -11,7 +11,6 @@
  + [Create a Team](#create-a-team)
  + [Create a Post](#create-a-post)
  + [Get Notifications](#get-notifications)
-
  
  ## Register User
  + URL: http://sntc.online/app/register

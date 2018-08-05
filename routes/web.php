@@ -64,6 +64,12 @@ Route::post('app/post','AppController@app_post');
 
 Route::post('app/app_feedback','AppController@app_feedback');
 
+Route::post('app/create_team','TeamController@create_team');
+
+Route::post('app/add_members','TeamController@add_members');
+
+Route::post('app/get_my_teams','TeamController@get_my_teams');
+
 
 
 
