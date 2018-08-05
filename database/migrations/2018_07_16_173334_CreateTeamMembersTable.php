@@ -15,7 +15,7 @@ class CreateTeamMembersTable extends Migration
     {
         Schema::create('team_members', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('rollNo');
+            $table->integer('rollNo')->unsigned();
             $table->integer('team_id')->unsigned();
             $table->foreign('team_id')->references('id')->on('teams');
             $table->boolean('is_creator');

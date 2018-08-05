@@ -22,7 +22,7 @@ class RegistrationController extends Controller{
         $appUser->name = $request->name;
         $appUser->email = $request->email;
         $appUser->contact = $request->contact;
-        $appUser->fcmToken = $request->fcmToken;
+        $appUser->unique_id = $request->fcmToken;
         $appUser->rollNo = $request->rollNo;
         $appUser->year = 0;
         $appUser->branch = "";
@@ -34,7 +34,7 @@ class RegistrationController extends Controller{
         $response["data"]["name"]= $appUser->name;
         $response["data"]["email"]= $appUser->email;
         $response["data"]["contact"]= $appUser->contact;
-        $response["data"]["id"]= $appUser->fcmToken;
+        $response["data"]["id"]= $appUser->unique_id;
         $response["data"]["rollNo"]= $appUser->rollNo;
 
         return response()->json([
@@ -45,7 +45,7 @@ class RegistrationController extends Controller{
             'email' => $appUser->email,
             'contact'=>$appUser->contact,
             'rollNo'=>$appUser->rollNo,
-            'fcmToken'=>$appUser->fcmToken]]);
+            'fcmToken'=>$appUser->unique_id]]);
     }
 
     public function updateFcmToken(Request $request){

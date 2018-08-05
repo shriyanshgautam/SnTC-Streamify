@@ -176,7 +176,7 @@ class AppController extends Controller
         // resulting in redundancy of record
         $app_user->streams()->syncWithoutDetaching([$request->stream_id]);
         $success_response['status']='OK';
-        $success_response['data']=AppUser::with('streams')->find($request->rollNo);
+        $success_response['data']=AppUser::with('streams')->find($app_user->id);
 
         return response($success_response);
     }

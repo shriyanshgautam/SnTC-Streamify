@@ -38,6 +38,7 @@ class TeamController extends Controller
         $team = new Team();
         $team->event_id = $request->event_id;
         $team->name = $request->team_name;
+        $team->save();
 
         $team->save();
 
@@ -45,6 +46,7 @@ class TeamController extends Controller
         $team_member->rollNo = $request->rollNo;
         $team_member->team_id = $team->id;
         $team_member->is_creator = true;
+        $team_member->save();
 
         $team_member->save(); // save it
 
@@ -68,7 +70,7 @@ class TeamController extends Controller
             return response($error_response);
         }
 
-        $appUser = AppUser::where('rollNo',$request->rollNo)->first();
+        $app_user = AppUser::where('rollNo',$request->rollNo)->first();
         if($app_user==null){
             $error_response['status']='Error : User not found.';
             return response($error_response);
@@ -84,6 +86,7 @@ class TeamController extends Controller
         $team_member->rollNo = $request->rollNo;
         $team_member->team_id = $team->id;
         $team_member->is_creator = false;
+        $team_member->save();
 
         $team_member->save(); // save it
 
@@ -107,7 +110,7 @@ class TeamController extends Controller
             return response($error_response);
         }
 
-        $results = TeamMember::where('rollNo','=',$request->rollNo)->get();
+        $results = TeamMember::where('rollNo',$request->rollNo)->get();
         if($results==null){
             $error_response['status']='Error : No results found.';
             return response($error_response);
