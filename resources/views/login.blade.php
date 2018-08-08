@@ -55,7 +55,7 @@
                 </div>
             </div>
             <form id="auth_form" action="\login" method="POST" >
-                {{ csrf_field() }}
+                {!! csrf_field() !!}
                 <input id="google_token" type="hidden" name="google_token"  />
                 <input id="user_email" type="hidden" name="user_email"  />
             </form>
