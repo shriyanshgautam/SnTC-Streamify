@@ -1,5 +1,17 @@
  # SnTC-Streamify
  
+ ## List of APIs
+ + [Register User](#register-user)
+ + [Get Events](#register-user)
+ + [Subscribe to a stream](#register-user)
+ + [Unsubscribe a stream](#register-user)
+ + [Get User Subscribed Streams](#get-user-subscribed-streams)
+ + [Get all teams a user belongs to](#get-all-teams-a-user-belongs-to)
+ + [Add members to a team](#add-members-to-a-team(keep-teamId-private-to-the-creator))
+ + [Create a Team](#create-a-team)
+ + [Create a Post](#create-a-post)
+ + [Get Notifications](#get-notifications)
+ 
  ## Register User
  + URL: http://sntc.online/app/register
  + Method Type: POST
