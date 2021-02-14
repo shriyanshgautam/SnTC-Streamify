@@ -40,11 +40,15 @@ class TeamController extends Controller
         $team->name = $request->team_name;
         $team->save();
 
+        $team->save();
+
         $team_member = new TeamMember();
         $team_member->rollNo = $request->rollNo;
         $team_member->team_id = $team->id;
         $team_member->is_creator = true;
         $team_member->save();
+
+        $team_member->save(); // save it
 
         return response()->json([
             "status" => "OK",
@@ -83,6 +87,8 @@ class TeamController extends Controller
         $team_member->team_id = $team->id;
         $team_member->is_creator = false;
         $team_member->save();
+
+        $team_member->save(); // save it
 
         return response()->json([
             "status" => "OK"
